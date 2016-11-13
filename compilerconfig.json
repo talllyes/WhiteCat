@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Lib/tbkcplugin/css/tbkcplugin.css",
+    "inputFile": "Lib/tbkcplugin/scss/tbkcplugin.scss"
+  },
+  {
+    "outputFile": "Config_Demo/Demo.css",
+    "inputFile": "Config_Demo/Demo.scss"
+  }
+]

@@ -19,19 +19,19 @@
                 if (type < 4) {
                     $("#role" + id + "_" + type).attr("src", "../../Img/s" + (type + 1) + ".png");
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/赤石士兵s.png");
+                    $("#role" + id + "_4").attr("src", "../../Img/q2.png");
                 }
             } else if ($("#role" + id + "_0").data("star") == "3") {
                 if (type < 4) {
                     $("#role" + id + "_" + type).attr("src", "../../Img/s" + (type + 1) + ".png");
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/克里斯多弗.png");
+                    $("#role" + id + "_4").attr("src", "../../Img/q3.png");
                 }
             } else if ($("#role" + id + "_0").data("star") == "4") {
                 if (type < 4) {
                     $("#role" + id + "_" + type).attr("src", "../../Img/g" + (type + 1) + ".png");
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/米菈.png");
+                    $("#role" + id + "_4").attr("src", "../../Img/q1.png");
                 }
             }
             $("#role" + id + "_" + type).css({

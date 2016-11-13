@@ -21,7 +21,7 @@ using System.Reflection;
 
 
 
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Database")]
+[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="db823292d13be1409f85a2a6bd00d88f73")]
 public partial class DataClassesDataContext : System.Data.Linq.DataContext
 {
 	
@@ -29,13 +29,13 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	
   #region 擴充性方法定義
   partial void OnCreated();
-  partial void InsertTable(Table instance);
-  partial void UpdateTable(Table instance);
-  partial void DeleteTable(Table instance);
+  partial void Inserttest(test instance);
+  partial void Updatetest(test instance);
+  partial void Deletetest(test instance);
   #endregion
 	
 	public DataClassesDataContext() : 
-			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString, mappingSource)
+			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["db823292d13be1409f85a2a6bd00d88f73ConnectionString"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
@@ -64,22 +64,22 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<Table> Table
+	public System.Data.Linq.Table<test> test
 	{
 		get
 		{
-			return this.GetTable<Table>();
+			return this.GetTable<test>();
 		}
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Table]")]
-public partial class Table : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.test")]
+public partial class test : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _Id;
+	private int _id;
 	
 	private string _name;
 	
@@ -87,38 +87,38 @@ public partial class Table : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
     partial void OnnameChanging(string value);
     partial void OnnameChanged();
     #endregion
 	
-	public Table()
+	public test()
 	{
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
 	{
 		get
 		{
-			return this._Id;
+			return this._id;
 		}
 		set
 		{
-			if ((this._Id != value))
+			if ((this._id != value))
 			{
-				this.OnIdChanging(value);
+				this.OnidChanging(value);
 				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NChar(10)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50)")]
 	public string name
 	{
 		get

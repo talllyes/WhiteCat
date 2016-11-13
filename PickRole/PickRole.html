@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+
+    <script src="../Lib/other/jquery-3.1.1.js"></script>
+    <script src="../Lib/other/tether.min.js"></script>
+    <script src="../Lib/bootstrap4/js/bootstrap.js"></script>
+    <link href="../Lib/bootstrap4/css/bootstrap.css" rel="stylesheet" />
+    <link href="../Lib/tbkcplugin/css/tbkcplugin.css" rel="stylesheet" />
+    <script src="../Lib/tbkcplugin/js/tbkcplugin.js"></script>
+
+    <script src="../Lib/angular/angular.js"></script>
+    <script src="../Lib/angular/angular-sanitize.min.js"></script>
+    <script src="../Lib/angular/angular-route.js"></script>
+
+    <link href="../Lib/highligt/css/vs.css" rel="stylesheet" />
+    <script src="../Lib/highligt/js/highlight.pack.js"></script>
+
+    <script src="../Config_Demo/Dome.js"></script>
+    <link href="../Config_Demo/Demo.css" rel="stylesheet" />
+
+    <script src="PickRole.js"></script>
+    <script src="Role/Role.js"></script>
+    <script src="PickRoleRoute.js"></script>
+</head>
+<body ng-controller="PickRole as PickRole" ng-app="PickRoleApp">
+    <div class="k-navbar">
+        <div class="zone">
+            <ul>
+                <li>
+                    <a href="../index.html">白貓</a>
+                </li>
+                <li>
+                    <a class="active" href="../PickRole/PickRole.html">模擬抽角器</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="k-body">
+        <div class="zone">
+            <div class="demoBodyRight">
+                <ng-view></ng-view>
+            </div>
+            <div class="demoBodyLeft">
+               最新抽角狀況
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;height:50px;"></div>
+</body>
+</html>

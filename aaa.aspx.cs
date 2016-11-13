@@ -19,8 +19,8 @@ public partial class aaa : System.Web.UI.Page
         DB.SubmitChanges();
 
 
-        var result = from a in DB.Table
-                     select a;
+        var result = (from a in DB.Table
+                     select a.name).FirstOrDefault();
         Label1.Text = result.ToString();
     }
 }

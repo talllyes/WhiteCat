@@ -10,17 +10,18 @@ public partial class aaa : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         DataClassesDataContext DB = new DataClassesDataContext();
-        Table insert = new Table
+        test insert = new test
         {
             name = "2"
         };
 
-        DB.Table.InsertOnSubmit(insert);
+        DB.test.InsertOnSubmit(insert);
         DB.SubmitChanges();
 
 
-        var result = (from a in DB.Table
-                     select a.name).FirstOrDefault();
+        var result = (from a in DB.test
+                      orderby a.id descending
+                      select a.name).FirstOrDefault();
         Label1.Text = result.ToString();
     }
 }

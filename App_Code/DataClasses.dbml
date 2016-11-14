@@ -1,9 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db823292d13be1409f85a2a6bd00d88f73" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=823292d1-3be1-409f-85a2-a6bd00d88f73.sqlserver.sequelizer.com;Initial Catalog=db823292d13be1409f85a2a6bd00d88f73;Persist Security Info=True;User ID=rozsljgnpnqcnvzp" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="db823292d13be1409f85a2a6bd00d88f73ConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.test" Member="test">
-    <Type Name="test">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=823292d1-3be1-409f-85a2-a6bd00d88f73.sqlserver.sequelizer.com;Initial Catalog=db823292d13be1409f85a2a6bd00d88f73;User ID=rozsljgnpnqcnvzp" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="db823292d13be1409f85a2a6bd00d88f73ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Pick" Member="Pick">
+    <Type Name="Pick">
+      <Column Name="PickID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="GUID" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="star" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="SceneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PickDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Scene" Member="Scene">
+    <Type Name="Scene">
+      <Column Name="SceneID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Role" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Role">
+    <Type Name="Role">
+      <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Star" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Src" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

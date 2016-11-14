@@ -34,7 +34,7 @@
                     <a href="../index.html">白貓</a>
                 </li>
                 <li>
-                    <a class="active" href="../PickRole/PickRole.html">模擬抽角器</a>
+                    <a class="active" href="../PickRole/PickRole.html">抽角模擬器</a>
                 </li>
             </ul>
         </div>
@@ -45,7 +45,25 @@
                 <ng-view></ng-view>
             </div>
             <div class="demoBodyLeft">
-               最新抽角狀況
+                最新抽角狀況
+                <div>
+                    總計：{{PickRole.starNum.star.starC}}抽
+                </div>
+                <div>
+                    二星角：{{(PickRole.starNum.star.star2*100)|number:'2'}}％
+                </div>
+                <div>
+                    三星角：{{(PickRole.starNum.star.star3*100)|number:'2'}}％
+                </div>
+                <div>
+                    四星角：{{(PickRole.starNum.star.star4*100)|number:'2'}}％
+                </div>
+                <div ng-repeat="star4 in PickRole.starNum.star4">
+                    <img style="width:50px;height:50px;" ng-src="../Img/role4/{{star4.RoleID}}.png" />
+                    {{(star4.Count*100)|number:'2'}}％<br />
+                    {{star4.Name}}
+                </div>
+
             </div>
         </div>
     </div>

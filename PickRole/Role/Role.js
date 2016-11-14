@@ -1,5 +1,28 @@
-﻿app.controller('Role', function ($scope) {
+﻿app.controller('Role', function ($scope, $http) {
     var Role = this;
+    Role.subFalg = true;
+
+    Role.sceneRole = [
+        { RoleID: "1" }, { RoleID: "2" },
+        { RoleID: "3" }, { RoleID: "4" },
+        { RoleID: "5" }, { RoleID: "6" },
+        { RoleID: "7" }, { RoleID: "8" },
+        { RoleID: "9" }, { RoleID: "10" },
+        { RoleID: "11" }, { RoleID: "12" },
+        { RoleID: "13" }, { RoleID: "14" },
+        { RoleID: "15" }, { RoleID: "16" },
+        { RoleID: "17" }, { RoleID: "18" },
+        { RoleID: "19" }, { RoleID: "20" }
+    ];
+    Role.Info = {
+        Name: "Kai",
+        GUID: "REASD-ASDV-ASDER-AS-VC-ASD",
+        SceneID: 1
+    };
+    Role.role = [];
+
+    
+
 
     Role.showRole = function (id) {
         roleGo(1);
@@ -17,21 +40,25 @@
         if (type < 5) {
             if ($("#role" + id + "_0").data("star") == "2") {
                 if (type < 4) {
-                    $("#role" + id + "_" + type).attr("src", "../../Img/s" + (type + 1) + ".png");
+                    $("#role" + id + "_" + type).attr("src", "../../Img/roleW/" + (type + 1) + ".png");
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/q2.png");
+                    $("#role" + id + "_4").attr("src", "../../Img/role2/1.png");
+                    Role.role.push("s2");
                 }
             } else if ($("#role" + id + "_0").data("star") == "3") {
                 if (type < 4) {
-                    $("#role" + id + "_" + type).attr("src", "../../Img/s" + (type + 1) + ".png");
+                    $("#role" + id + "_" + type).attr("src", "../../Img/roleG/" + (type + 1) + ".png");
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/q3.png");
+                    $("#role" + id + "_4").attr("src", "../../Img/role3/1.png");
+                    Role.role.push("s3");
                 }
             } else if ($("#role" + id + "_0").data("star") == "4") {
                 if (type < 4) {
-                    $("#role" + id + "_" + type).attr("src", "../../Img/g" + (type + 1) + ".png");
+                    $("#role" + id + "_" + type).attr("src", "../../Img/roleG/" + (type + 1) + ".png");
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/q1.png");
+                    var s4 = rankStar4();
+                    Role.role.push(s4 + "");
+                    $("#role" + id + "_4").attr("src", "../../Img/role4/" + s4 + ".png");
                 }
             }
             $("#role" + id + "_" + type).css({
@@ -65,13 +92,45 @@
                 left: 0
             }, 100);
             setTimeout(function () { showRoleGo(id, type + 1); }, 500);
+        } else {
+            if (id == 11) {
+                Role.subFalg = true;
+                updateRoleNum();
+            }
         }
+    }
+
+    function updateRoleNum() {
+        var temp = {};
+        temp.Info = Role.Info;
+        temp.role = Role.role;
+        Role.role = [];
+        console.log(temp);
+        $http({
+            method: 'POST',
+            url: '../WebAPI/Role.ashx?type=updateRoleNum',
+            data: temp
+        }).then(function successCallback(response) {
+            $scope.PickRole.getSceneNum();
+        }, function errorCallback(response) {
+        });
     }
 
 
 
 
+
+
+    function rankStar4() {
+        var maxNum = 20
+        var minNum = 1;
+        var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+        return n;
+    }
+
+
     Role.pick = function () {
+        Role.subFalg = false;
         for (var i = 1; i < 12; i++) {
             for (var j = 1; j < 5; j++) {
                 $("#role" + i + "_" + j).css({
@@ -102,13 +161,13 @@
         var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
         var src = "";
         if (n > 0 && n < 46) {
-            src = "../../Img/s1.png";
+            src = "../../Img/roleW/1.png";
             $("#" + id).data("star", "2");
         } else if (n > 45 && n < 91) {
-            src = "../../Img/g1.png";
+            src = "../../Img/roleG/1.png";
             $("#" + id).data("star", "3");
         } else {
-            src = "../../Img/g1.png";
+            src = "../../Img/roleG/1.png";
             $("#" + id).data("star", "4");
         }
         $("#" + id).attr("src", src);

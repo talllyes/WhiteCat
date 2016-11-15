@@ -1,67 +1,142 @@
 ﻿app.controller('Role', function ($scope, $http) {
     var Role = this;
-    Role.subFalg = true;
-
-    Role.sceneRole = [
-        { RoleID: "1" }, { RoleID: "2" },
-        { RoleID: "3" }, { RoleID: "4" },
-        { RoleID: "5" }, { RoleID: "6" },
-        { RoleID: "7" }, { RoleID: "8" },
-        { RoleID: "9" }, { RoleID: "10" },
-        { RoleID: "11" }, { RoleID: "12" },
-        { RoleID: "13" }, { RoleID: "14" },
-        { RoleID: "15" }, { RoleID: "16" },
-        { RoleID: "17" }, { RoleID: "18" },
-        { RoleID: "19" }, { RoleID: "20" }
-    ];
-    Role.Info = {
-        Name: "Kai",
-        GUID: "REASD-ASDV-ASDER-AS-VC-ASD",
-        SceneID: 1
+    Role.subFalg = false;            //按鈕顯示
+    Role.nowShow = 'input';
+    Role.choose = "pick";
+    Role.pickTime = 0;
+    Role.rank = [];
+    Role.star = {
+        star2: 0,
+        star3: 0,
+        star4: 0,
     };
+    Role.Info = {
+        Name: "",
+        SceneID: 0,
+        flag: false
+    };
+    Role.sceneRole = [];            //該場景角色物件
     Role.role = [];
 
-    
+    Role.Info.SceneID = 1;
+    //取得該場景角色
+    function getSceneRole() {
+        var temp = Role.Info;
+        $http({
+            method: 'POST',
+            url: '../WebAPI/Role.ashx?type=SceneRole',
+            data: temp
+        }).then(function successCallback(response) {
+            Role.sceneRole = response.data;
+            angular.forEach(Role.sceneRole, function (value, key) {
+                value.Num = 0;
+            });
+            Role.subFalg = true;
+        }, function errorCallback(response) {
+        });
+    }
+    getSceneRole();
 
-
-    Role.showRole = function (id) {
-        roleGo(1);
+    //抽角按紐
+    Role.pick = function (type) {
+        Role.subFalg = false;
+        if (Role.Info.Name == "") {
+            Role.Info.Name = "無名氏";
+        }
+        if (type == 1) {
+            Role.pickTime = Role.pickTime + 1;
+        }
+        else if (type == 10) {
+            Role.pickTime = Role.pickTime + 11;
+            if (Role.nowShow == 'input') {
+                Role.nowShow = "10";
+            }
+            for (var i = 1; i < 12; i++) {
+                $("#role" + i).empty();
+            }
+            randStar(1);
+        }
+    }
+    function randStar(id) {
+        if (id < 12) {
+            randStarGo(id);
+            setTimeout(function () { randStar(id + 1); }, 50);
+        }
+    }
+    function randStarGo(id) {
+        var maxNum = 100
+        var minNum = 1;
+        var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+        var newImg;
+        if (n > 0 && n < 46) {
+            var src = "../../Img/roleW/1.png";
+            newImg = $("<img src='" + src + "' data-star='2' />");
+            $("#role" + id).append(newImg);
+        } else if (n > 45 && n < 91) {
+            var src = "../../Img/roleG/1.png";
+            newImg = $("<img src='" + src + "' data-star='3' />");
+            $("#role" + id).append(newImg);
+        } else {
+            var src = "../../Img/roleG/1.png";
+            newImg = $("<img src='" + src + "' data-star='4' />");
+            $("#role" + id).append(newImg);
+        }
+        newImg.css({
+            top: "-50px",
+            opacity: 0
+        }).animate({
+            opacity: 1,
+            top: "0"
+        }, 300, function () {
+            if (id == 11) {
+                randRole(1);
+            }
+        });
     }
 
-    function roleGo(id) {
+    function randRole(id) {
         if (id < 12) {
-            setTimeout(function () { roleGo(id + 1); }, 100);
-            showRoleGo(id, 1);
+            randRoleGo(id, 1);
+            setTimeout(function () { randRole(id + 1); }, 100);
         }
     }
 
-
-    function showRoleGo(id, type) {
-        if (type < 5) {
-            if ($("#role" + id + "_0").data("star") == "2") {
-                if (type < 4) {
-                    $("#role" + id + "_" + type).attr("src", "../../Img/roleW/" + (type + 1) + ".png");
+    function randRoleGo(id, index) {
+        if (index < 5) {
+            var lastDiv = $("#role" + id + " img:last-child");
+            var star = lastDiv.data("star");
+            var src = "";
+            if (star == "2") {
+                if (index < 4) {
+                    src = "../../Img/roleW/" + (index + 1) + ".png"
                 } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/role2/1.png");
+                    src = "../../Img/roleW/5.png"
                     Role.role.push("s2");
-                }
-            } else if ($("#role" + id + "_0").data("star") == "3") {
-                if (type < 4) {
-                    $("#role" + id + "_" + type).attr("src", "../../Img/roleG/" + (type + 1) + ".png");
-                } else {
-                    $("#role" + id + "_4").attr("src", "../../Img/role3/1.png");
-                    Role.role.push("s3");
-                }
-            } else if ($("#role" + id + "_0").data("star") == "4") {
-                if (type < 4) {
-                    $("#role" + id + "_" + type).attr("src", "../../Img/roleG/" + (type + 1) + ".png");
-                } else {
-                    var s4 = rankStar4();
-                    Role.role.push(s4 + "");
-                    $("#role" + id + "_4").attr("src", "../../Img/role4/" + s4 + ".png");
+                    Role.star.star2 = Role.star.star2 + 1;
                 }
             }
-            $("#role" + id + "_" + type).css({
+            else if (star == "3") {
+                if (index < 4) {
+                    src = "../../Img/roleG/" + (index + 1) + ".png"
+                } else {
+                    src = "../../Img/roleG/5.png"
+                    Role.role.push("s3");
+                    Role.star.star3 = Role.star.star3 + 1;
+                }
+            }
+            else if (star == "4") {
+                if (index < 4) {
+                    src = "../../Img/roleG/" + (index + 1) + ".png"
+                } else {
+                    var roleInfo = randStar4();
+                    Role.role.push(roleInfo.roleID + "");
+                    Role.star.star4 = Role.star.star4 + 1;
+                    src = "../../Img/role4/" + roleInfo.src + ".png";
+                }
+            }
+            var newImg = $("<img src='" + src + "' data-star='" + star + "' />");
+            lastDiv.after(newImg);
+            newImg.css({
                 opacity: 0,
                 display: "",
                 top: "-200px",
@@ -75,9 +150,7 @@
                 top: 0,
                 left: 0
             }, 300, function () {
-                $("#role" + id + "_" + (type - 1)).css({
-                    display: "none"
-                });
+                lastDiv.remove();
             }).animate({
                 top: "5px",
                 left: "-5px"
@@ -91,7 +164,7 @@
                 top: 0,
                 left: 0
             }, 100);
-            setTimeout(function () { showRoleGo(id, type + 1); }, 500);
+            setTimeout(function () { randRoleGo(id, index + 1); }, 500);
         } else {
             if (id == 11) {
                 Role.subFalg = true;
@@ -104,8 +177,13 @@
         var temp = {};
         temp.Info = Role.Info;
         temp.role = Role.role;
+        if (Role.pickTime == 110) {
+            temp.Info.flag = true;
+            temp.star = Role.star;
+        } else {
+            temp.Info.flag = false;
+        }
         Role.role = [];
-        console.log(temp);
         $http({
             method: 'POST',
             url: '../WebAPI/Role.ashx?type=updateRoleNum',
@@ -114,75 +192,61 @@
             $scope.PickRole.getSceneNum();
         }, function errorCallback(response) {
         });
-    }
-
-
-
-
-
-
-    function rankStar4() {
-        var maxNum = 20
-        var minNum = 1;
-        var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
-        return n;
-    }
-
-
-    Role.pick = function () {
-        Role.subFalg = false;
-        for (var i = 1; i < 12; i++) {
-            for (var j = 1; j < 5; j++) {
-                $("#role" + i + "_" + j).css({
-                    display: "none"
-                })
+        var num = true;
+        angular.forEach(Role.sceneRole, function (value, key) {
+            if (value.Num == 0) {
+                num = false;
             }
+        });
+        if (num) {
+            alert('恭喜你抽到所有角色!!');
+            Role.subFalg = false;
+            clear();
         }
-        for (var i = 1; i < 12; i++) {
-            $("#role" + i + "_0").css({
-                display: "",
-                opacity: 0
-            })
-        }
-        pickGo(1);
     }
 
-    function pickGo(id) {
-
-        if (id < 12) {
-            roleRandom("role" + id + "_0");
-        }
-        setTimeout(function () { pickGo(id + 1); }, 50);
-    }
-
-    function roleRandom(id) {
-        var maxNum = 100
-        var minNum = 1;
-        var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
-        var src = "";
-        if (n > 0 && n < 46) {
-            src = "../../Img/roleW/1.png";
-            $("#" + id).data("star", "2");
-        } else if (n > 45 && n < 91) {
-            src = "../../Img/roleG/1.png";
-            $("#" + id).data("star", "3");
-        } else {
-            src = "../../Img/roleG/1.png";
-            $("#" + id).data("star", "4");
-        }
-        $("#" + id).attr("src", src);
-        $("#" + id).css({
-            top: "-50px",
-            opacity: 0
-        }).animate({
-            opacity: 1,
-            top: "0"
-        }, 300, function () {
-            if (id == "role11_0") {
-                setTimeout(function () { roleGo(1); }, 300);
-            }
+    function clear() {
+        var temp = {};
+        temp.Info = Role.Info;
+        temp.star = Role.star;
+        $http({
+            method: 'POST',
+            url: '../WebAPI/Role.ashx?type=Clear',
+            data: temp
+        }).then(function successCallback(response) {
+            console.log(response.data);
+        }, function errorCallback(response) {
         });
     }
 
+    function randStar4() {
+        var maxNum = Role.sceneRole.length - 1;
+        var minNum = 0;
+        var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+        var roleInfo = {};
+        roleInfo.src = Role.sceneRole[n].Src;
+        roleInfo.roleID = Role.sceneRole[n].RoleID;
+        Role.sceneRole[n].Num = Role.sceneRole[n].Num + 1;
+        return roleInfo;
+    }
+
+
+    Role.getRank = function () {
+        var temp = Role.Info;
+        Role.choose = "rank";
+        $http({
+            method: 'POST',
+            url: '../WebAPI/Role.ashx?type=GetRank',
+            data: temp
+        }).then(function successCallback(response) {
+            Role.rank = response.data;
+            console.log(Role.rank);
+        }, function errorCallback(response) {
+        });
+    }
+
+    Role.resetPick = function () {
+        location.href = "../PickRole/PickRole.html";
+    }
 });
 

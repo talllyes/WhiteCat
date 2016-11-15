@@ -31,12 +31,22 @@
         <div class="zone">
             <ul>
                 <li>
-                    <a href="../index.html">白貓</a>
+                    <a style="font-weight:bold;color:black;">白貓</a>
                 </li>
-                <li>
-                    <a class="active" href="../PickRole/PickRole.html">抽角模擬器</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">抽角模擬器</a>
+                    <div class="dropdown-menu" style="line-height:26px;">
+                        <a class="dropdown-item" href="../PickRole/PickRole.html">聖女與希望之風</a>
+                        <a class="dropdown-item" href="#">test</a>
+                    </div>
                 </li>
             </ul>
+        </div>
+    </div>
+    <div style="height:auto;position:relative;background-color:#FFE8E8;">
+        <div style="position:absolute;width:100%;height:100%;background-color:white;opacity:0.2;"></div>
+        <div class="zone" style="text-align:center;">
+            <img style="height:250px;" src="../Img/sence/1.jpg" />
         </div>
     </div>
     <div class="k-body">
@@ -45,25 +55,35 @@
                 <ng-view></ng-view>
             </div>
             <div class="demoBodyLeft">
-                最新抽角狀況
-                <div>
-                    總計：{{PickRole.starNum.star.starC}}抽
+                <div class="k-card">
+                    <div class="k-head">
+                        累積抽角樣本數
+                    </div><div class="k-body">
+                        <div>
+                            <span>　</span>總計：{{PickRole.starNum.star.starC}}抽
+                        </div>
+                        <div>
+                            二星角：{{PickRole.starNum.star.star2}}次({{(PickRole.starNum.star.star2/PickRole.starNum.star.starC*100)|number:'2'}}％)
+                        </div>
+                        <div>
+                            三星角：{{PickRole.starNum.star.star3}}次({{(PickRole.starNum.star.star3/PickRole.starNum.star.starC*100)|number:'2'}}％)
+                        </div>
+                        <div>
+                            四星角：{{PickRole.starNum.star.star4}}次({{(PickRole.starNum.star.star4/PickRole.starNum.star.starC*100)|number:'2'}}％)
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    二星角：{{(PickRole.starNum.star.star2*100)|number:'2'}}％
+                <br />
+                <div ng-repeat="star4 in PickRole.starNum.star4" class="k-card2">
+                    <div class="k-body" style="text-align:center;">
+                        <img style="width:50px;height:50px;" ng-src="../Img/role4/{{star4.RoleID}}.png" />
+                        {{(star4.Count*100/PickRole.starNum.starC2)|number:'2'}}％
+                    </div>
+                    <div class="k-line"></div>
+                    <div class="k-font" style="text-align:center;">
+                        {{star4.Name}}
+                    </div>
                 </div>
-                <div>
-                    三星角：{{(PickRole.starNum.star.star3*100)|number:'2'}}％
-                </div>
-                <div>
-                    四星角：{{(PickRole.starNum.star.star4*100)|number:'2'}}％
-                </div>
-                <div ng-repeat="star4 in PickRole.starNum.star4">
-                    <img style="width:50px;height:50px;" ng-src="../Img/role4/{{star4.RoleID}}.png" />
-                    {{(star4.Count*100)|number:'2'}}％<br />
-                    {{star4.Name}}
-                </div>
-
             </div>
         </div>
     </div>

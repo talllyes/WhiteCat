@@ -101,6 +101,7 @@ body {
 }
 
 .out-box {
+    display: inline-block;
     width: 400px;
     text-align: center;
     padding: 0;
@@ -123,4 +124,72 @@ body {
         top: 0;
         left: 0;
     }
+}
+
+.out-Rbox {
+    display: inline-block;
+    width: 300px;
+    padding: 0;
+    vertical-align: top;
+}
+
+.k-card {
+    border: 1px solid $color_黑2;
+
+    .k-head {
+        padding: 10px;
+        background-color: #FFD4D4;
+        border-bottom: 1px solid #FF8C8C;
+    }
+
+    .k-body {
+        padding: 10px;
+    }
+}
+
+.k-card2 {
+    border: 1px solid $color_黑2;
+    display: inline-block;
+    width: 117px;
+    padding: 0;
+    margin: 3px;
+
+    .k-body {
+        padding: 3px;
+    }
+
+    .k-font {
+        padding-left: 10px;
+    }
+
+    .k-line {
+        border-bottom: 1px solid $color_黑2;
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
+}
+.k-card3 {
+    border: 1px solid $color_黑2;
+    margin:auto;
+    .k-body {
+        padding: 3px;
+    }
+
+    .k-font {
+        padding-left: 10px;
+    }
+
+    .k-line {
+        border-bottom: 1px solid $color_黑2;
+        margin-top: 1px;
+        margin-bottom: 1px;
+    }
+}
+
+.k-select{
+    cursor:pointer;
+
+}
+.k-select:hover{
+    font-weight:bold;
 }

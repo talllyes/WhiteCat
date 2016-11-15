@@ -29,15 +29,18 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	
   #region 擴充性方法定義
   partial void OnCreated();
-  partial void InsertPick(Pick instance);
-  partial void UpdatePick(Pick instance);
-  partial void DeletePick(Pick instance);
-  partial void InsertScene(Scene instance);
-  partial void UpdateScene(Scene instance);
-  partial void DeleteScene(Scene instance);
   partial void InsertRole(Role instance);
   partial void UpdateRole(Role instance);
   partial void DeleteRole(Role instance);
+  partial void InsertPick(Pick instance);
+  partial void UpdatePick(Pick instance);
+  partial void DeletePick(Pick instance);
+  partial void InsertRank(Rank instance);
+  partial void UpdateRank(Rank instance);
+  partial void DeleteRank(Rank instance);
+  partial void InsertScene(Scene instance);
+  partial void UpdateScene(Scene instance);
+  partial void DeleteScene(Scene instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -70,6 +73,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
+	public System.Data.Linq.Table<Role> Role
+	{
+		get
+		{
+			return this.GetTable<Role>();
+		}
+	}
+	
 	public System.Data.Linq.Table<Pick> Pick
 	{
 		get
@@ -78,383 +89,19 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
+	public System.Data.Linq.Table<Rank> Rank
+	{
+		get
+		{
+			return this.GetTable<Rank>();
+		}
+	}
+	
 	public System.Data.Linq.Table<Scene> Scene
 	{
 		get
 		{
 			return this.GetTable<Scene>();
-		}
-	}
-	
-	public System.Data.Linq.Table<Role> Role
-	{
-		get
-		{
-			return this.GetTable<Role>();
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pick")]
-public partial class Pick : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _PickID;
-	
-	private string _Name;
-	
-	private string _GUID;
-	
-	private System.Nullable<int> _RoleID;
-	
-	private string _star;
-	
-	private System.Nullable<int> _SceneID;
-	
-	private System.Nullable<System.DateTime> _PickDate;
-	
-    #region 擴充性方法定義
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPickIDChanging(int value);
-    partial void OnPickIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnGUIDChanging(string value);
-    partial void OnGUIDChanged();
-    partial void OnRoleIDChanging(System.Nullable<int> value);
-    partial void OnRoleIDChanged();
-    partial void OnstarChanging(string value);
-    partial void OnstarChanged();
-    partial void OnSceneIDChanging(System.Nullable<int> value);
-    partial void OnSceneIDChanged();
-    partial void OnPickDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnPickDateChanged();
-    #endregion
-	
-	public Pick()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PickID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int PickID
-	{
-		get
-		{
-			return this._PickID;
-		}
-		set
-		{
-			if ((this._PickID != value))
-			{
-				this.OnPickIDChanging(value);
-				this.SendPropertyChanging();
-				this._PickID = value;
-				this.SendPropertyChanged("PickID");
-				this.OnPickIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(20)")]
-	public string Name
-	{
-		get
-		{
-			return this._Name;
-		}
-		set
-		{
-			if ((this._Name != value))
-			{
-				this.OnNameChanging(value);
-				this.SendPropertyChanging();
-				this._Name = value;
-				this.SendPropertyChanged("Name");
-				this.OnNameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GUID", DbType="VarChar(60)")]
-	public string GUID
-	{
-		get
-		{
-			return this._GUID;
-		}
-		set
-		{
-			if ((this._GUID != value))
-			{
-				this.OnGUIDChanging(value);
-				this.SendPropertyChanging();
-				this._GUID = value;
-				this.SendPropertyChanged("GUID");
-				this.OnGUIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int")]
-	public System.Nullable<int> RoleID
-	{
-		get
-		{
-			return this._RoleID;
-		}
-		set
-		{
-			if ((this._RoleID != value))
-			{
-				this.OnRoleIDChanging(value);
-				this.SendPropertyChanging();
-				this._RoleID = value;
-				this.SendPropertyChanged("RoleID");
-				this.OnRoleIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_star", DbType="VarChar(2)")]
-	public string star
-	{
-		get
-		{
-			return this._star;
-		}
-		set
-		{
-			if ((this._star != value))
-			{
-				this.OnstarChanging(value);
-				this.SendPropertyChanging();
-				this._star = value;
-				this.SendPropertyChanged("star");
-				this.OnstarChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SceneID", DbType="Int")]
-	public System.Nullable<int> SceneID
-	{
-		get
-		{
-			return this._SceneID;
-		}
-		set
-		{
-			if ((this._SceneID != value))
-			{
-				this.OnSceneIDChanging(value);
-				this.SendPropertyChanging();
-				this._SceneID = value;
-				this.SendPropertyChanged("SceneID");
-				this.OnSceneIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PickDate", DbType="DateTime")]
-	public System.Nullable<System.DateTime> PickDate
-	{
-		get
-		{
-			return this._PickDate;
-		}
-		set
-		{
-			if ((this._PickDate != value))
-			{
-				this.OnPickDateChanging(value);
-				this.SendPropertyChanging();
-				this._PickDate = value;
-				this.SendPropertyChanged("PickDate");
-				this.OnPickDateChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Scene")]
-public partial class Scene : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _SceneID;
-	
-	private string _Name;
-	
-	private System.Nullable<System.DateTime> _StartDate;
-	
-	private System.Nullable<System.DateTime> _EndDate;
-	
-	private string _Role;
-	
-    #region 擴充性方法定義
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSceneIDChanging(int value);
-    partial void OnSceneIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnStartDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartDateChanged();
-    partial void OnEndDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnEndDateChanged();
-    partial void OnRoleChanging(string value);
-    partial void OnRoleChanged();
-    #endregion
-	
-	public Scene()
-	{
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SceneID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int SceneID
-	{
-		get
-		{
-			return this._SceneID;
-		}
-		set
-		{
-			if ((this._SceneID != value))
-			{
-				this.OnSceneIDChanging(value);
-				this.SendPropertyChanging();
-				this._SceneID = value;
-				this.SendPropertyChanged("SceneID");
-				this.OnSceneIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
-	public string Name
-	{
-		get
-		{
-			return this._Name;
-		}
-		set
-		{
-			if ((this._Name != value))
-			{
-				this.OnNameChanging(value);
-				this.SendPropertyChanging();
-				this._Name = value;
-				this.SendPropertyChanged("Name");
-				this.OnNameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime")]
-	public System.Nullable<System.DateTime> StartDate
-	{
-		get
-		{
-			return this._StartDate;
-		}
-		set
-		{
-			if ((this._StartDate != value))
-			{
-				this.OnStartDateChanging(value);
-				this.SendPropertyChanging();
-				this._StartDate = value;
-				this.SendPropertyChanged("StartDate");
-				this.OnStartDateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime")]
-	public System.Nullable<System.DateTime> EndDate
-	{
-		get
-		{
-			return this._EndDate;
-		}
-		set
-		{
-			if ((this._EndDate != value))
-			{
-				this.OnEndDateChanging(value);
-				this.SendPropertyChanging();
-				this._EndDate = value;
-				this.SendPropertyChanged("EndDate");
-				this.OnEndDateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="VarChar(MAX)")]
-	public string Role
-	{
-		get
-		{
-			return this._Role;
-		}
-		set
-		{
-			if ((this._Role != value))
-			{
-				this.OnRoleChanging(value);
-				this.SendPropertyChanging();
-				this._Role = value;
-				this.SendPropertyChanged("Role");
-				this.OnRoleChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -512,7 +159,7 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 	public string Name
 	{
 		get
@@ -532,7 +179,7 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Star", DbType="VarChar(2)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Star", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
 	public string Star
 	{
 		get
@@ -552,7 +199,457 @@ public partial class Role : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Src", DbType="VarChar(10)")]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Src", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+	public string Src
+	{
+		get
+		{
+			return this._Src;
+		}
+		set
+		{
+			if ((this._Src != value))
+			{
+				this.OnSrcChanging(value);
+				this.SendPropertyChanging();
+				this._Src = value;
+				this.SendPropertyChanged("Src");
+				this.OnSrcChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Pick")]
+public partial class Pick : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _PickID;
+	
+	private int _RoleID;
+	
+	private string _star;
+	
+	private int _SceneID;
+	
+	private int _Num;
+	
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPickIDChanging(int value);
+    partial void OnPickIDChanged();
+    partial void OnRoleIDChanging(int value);
+    partial void OnRoleIDChanged();
+    partial void OnstarChanging(string value);
+    partial void OnstarChanged();
+    partial void OnSceneIDChanging(int value);
+    partial void OnSceneIDChanged();
+    partial void OnNumChanging(int value);
+    partial void OnNumChanged();
+    #endregion
+	
+	public Pick()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PickID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int PickID
+	{
+		get
+		{
+			return this._PickID;
+		}
+		set
+		{
+			if ((this._PickID != value))
+			{
+				this.OnPickIDChanging(value);
+				this.SendPropertyChanging();
+				this._PickID = value;
+				this.SendPropertyChanged("PickID");
+				this.OnPickIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleID", DbType="Int NOT NULL")]
+	public int RoleID
+	{
+		get
+		{
+			return this._RoleID;
+		}
+		set
+		{
+			if ((this._RoleID != value))
+			{
+				this.OnRoleIDChanging(value);
+				this.SendPropertyChanging();
+				this._RoleID = value;
+				this.SendPropertyChanged("RoleID");
+				this.OnRoleIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_star", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+	public string star
+	{
+		get
+		{
+			return this._star;
+		}
+		set
+		{
+			if ((this._star != value))
+			{
+				this.OnstarChanging(value);
+				this.SendPropertyChanging();
+				this._star = value;
+				this.SendPropertyChanged("star");
+				this.OnstarChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SceneID", DbType="Int NOT NULL")]
+	public int SceneID
+	{
+		get
+		{
+			return this._SceneID;
+		}
+		set
+		{
+			if ((this._SceneID != value))
+			{
+				this.OnSceneIDChanging(value);
+				this.SendPropertyChanging();
+				this._SceneID = value;
+				this.SendPropertyChanged("SceneID");
+				this.OnSceneIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Num", DbType="Int NOT NULL")]
+	public int Num
+	{
+		get
+		{
+			return this._Num;
+		}
+		set
+		{
+			if ((this._Num != value))
+			{
+				this.OnNumChanging(value);
+				this.SendPropertyChanging();
+				this._Num = value;
+				this.SendPropertyChanged("Num");
+				this.OnNumChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rank")]
+public partial class Rank : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _RankID;
+	
+	private int _SceneID;
+	
+	private string _Type;
+	
+	private string _RankContent;
+	
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRankIDChanging(int value);
+    partial void OnRankIDChanged();
+    partial void OnSceneIDChanging(int value);
+    partial void OnSceneIDChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnRankContentChanging(string value);
+    partial void OnRankContentChanged();
+    #endregion
+	
+	public Rank()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RankID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int RankID
+	{
+		get
+		{
+			return this._RankID;
+		}
+		set
+		{
+			if ((this._RankID != value))
+			{
+				this.OnRankIDChanging(value);
+				this.SendPropertyChanging();
+				this._RankID = value;
+				this.SendPropertyChanged("RankID");
+				this.OnRankIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SceneID", DbType="Int NOT NULL")]
+	public int SceneID
+	{
+		get
+		{
+			return this._SceneID;
+		}
+		set
+		{
+			if ((this._SceneID != value))
+			{
+				this.OnSceneIDChanging(value);
+				this.SendPropertyChanging();
+				this._SceneID = value;
+				this.SendPropertyChanged("SceneID");
+				this.OnSceneIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+	public string Type
+	{
+		get
+		{
+			return this._Type;
+		}
+		set
+		{
+			if ((this._Type != value))
+			{
+				this.OnTypeChanging(value);
+				this.SendPropertyChanging();
+				this._Type = value;
+				this.SendPropertyChanged("Type");
+				this.OnTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RankContent", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+	public string RankContent
+	{
+		get
+		{
+			return this._RankContent;
+		}
+		set
+		{
+			if ((this._RankContent != value))
+			{
+				this.OnRankContentChanging(value);
+				this.SendPropertyChanging();
+				this._RankContent = value;
+				this.SendPropertyChanged("RankContent");
+				this.OnRankContentChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Scene")]
+public partial class Scene : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _SceneID;
+	
+	private string _Name;
+	
+	private System.DateTime _StartDate;
+	
+	private System.DateTime _EndDate;
+	
+	private string _Src;
+	
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSceneIDChanging(int value);
+    partial void OnSceneIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnSrcChanging(string value);
+    partial void OnSrcChanged();
+    #endregion
+	
+	public Scene()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SceneID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int SceneID
+	{
+		get
+		{
+			return this._SceneID;
+		}
+		set
+		{
+			if ((this._SceneID != value))
+			{
+				this.OnSceneIDChanging(value);
+				this.SendPropertyChanging();
+				this._SceneID = value;
+				this.SendPropertyChanged("SceneID");
+				this.OnSceneIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string Name
+	{
+		get
+		{
+			return this._Name;
+		}
+		set
+		{
+			if ((this._Name != value))
+			{
+				this.OnNameChanging(value);
+				this.SendPropertyChanging();
+				this._Name = value;
+				this.SendPropertyChanged("Name");
+				this.OnNameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime NOT NULL")]
+	public System.DateTime StartDate
+	{
+		get
+		{
+			return this._StartDate;
+		}
+		set
+		{
+			if ((this._StartDate != value))
+			{
+				this.OnStartDateChanging(value);
+				this.SendPropertyChanging();
+				this._StartDate = value;
+				this.SendPropertyChanged("StartDate");
+				this.OnStartDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime NOT NULL")]
+	public System.DateTime EndDate
+	{
+		get
+		{
+			return this._EndDate;
+		}
+		set
+		{
+			if ((this._EndDate != value))
+			{
+				this.OnEndDateChanging(value);
+				this.SendPropertyChanging();
+				this._EndDate = value;
+				this.SendPropertyChanged("EndDate");
+				this.OnEndDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Src", DbType="VarChar(50)")]
 	public string Src
 	{
 		get

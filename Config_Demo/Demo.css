@@ -66,6 +66,7 @@
     padding-left: 39px; }
 
 .out-box {
+  display: inline-block;
   width: 400px;
   text-align: center;
   padding: 0; }
@@ -85,4 +86,52 @@
     position: absolute;
     top: 0;
     left: 0; }
+
+.out-Rbox {
+  display: inline-block;
+  width: 300px;
+  padding: 0;
+  vertical-align: top; }
+
+.k-card {
+  border: 1px solid #BFBFBF; }
+  .k-card .k-head {
+    padding: 10px;
+    background-color: #FFD4D4;
+    border-bottom: 1px solid #FF8C8C; }
+  .k-card .k-body {
+    padding: 10px; }
+
+.k-card2 {
+  border: 1px solid #BFBFBF;
+  display: inline-block;
+  width: 117px;
+  padding: 0;
+  margin: 3px; }
+  .k-card2 .k-body {
+    padding: 3px; }
+  .k-card2 .k-font {
+    padding-left: 10px; }
+  .k-card2 .k-line {
+    border-bottom: 1px solid #BFBFBF;
+    margin-top: 1px;
+    margin-bottom: 1px; }
+
+.k-card3 {
+  border: 1px solid #BFBFBF;
+  margin: auto; }
+  .k-card3 .k-body {
+    padding: 3px; }
+  .k-card3 .k-font {
+    padding-left: 10px; }
+  .k-card3 .k-line {
+    border-bottom: 1px solid #BFBFBF;
+    margin-top: 1px;
+    margin-bottom: 1px; }
+
+.k-select {
+  cursor: pointer; }
+
+.k-select:hover {
+  font-weight: bold; }
 

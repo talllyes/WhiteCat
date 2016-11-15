@@ -109,7 +109,8 @@
                 div.data('time', inTime);
                 setTimeout(timeTo, 100);
                 var style = div.data("loadstyle");
-                div.css("display", "none");
+                div.css({ position: "absolute", left: "-2000px" });
+                // div.css("display", "none");
                 div.after(eval(style));
             }
             function timeTo() {
@@ -126,7 +127,7 @@
                 } else {
                     div.next().remove();
                     div.displayOff();
-                    div.css("opacity", 0);
+                    div.css({ position: "", left: "" ,opacity: 0});
                     div.animate({ opacity: "1" }, 500);
                 }
             }
@@ -321,7 +322,7 @@
                 eval("endCss={ opacity: 1, " + type + ": 0 }");
                 div.css({ top: "", left: "", right: "", bottom: "" });
                 div.css(startCss);
-                div.animate(endCss, inSpeed, function () {
+                div.animate(endCss, inSpeed, "easeOutSine", function () {
                     div.parent().css({ position: "static", overflow: "" });
                 });
             }

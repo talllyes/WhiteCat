@@ -1,85 +1,126 @@
-﻿<div class="out-box">
-    <div style="width:100%;">
-        <div class="inner-role">
-            <img id="role11_0" src="" style="display:none" />
-            <img id="role11_1" src="" style="display:none" />
-            <img id="role11_2" src="" style="display:none" />
-            <img id="role11_3" src="" style="display:none" />
-            <img id="role11_4" src="" style="display:none" />
+﻿<div class="out-box" style="width:550px;text-align:center;">
+    <div style="margin-bottom:20px;">
+        <span class="k-select" ng-click="Role.choose = 'pick'">抽角</span>
+        <span>　</span>
+        <span class="k-select" ng-click="Role.getRank()">排行榜</span>
+    </div>
+    <div ng-show="Role.choose == 'rank'">
+        歐洲人國王(110抽)<br />
+        姓名：{{Role.rank.type1.Name}}<br />
+        四星：{{Role.rank.type1.Star4}}<br />
+        三星：{{Role.rank.type1.Star3}}<br />
+        二星：{{Role.rank.type1.Star2}}<br /><br />
+        非洲人酋長(110抽)<br />
+        姓名：{{Role.rank.type2.Name}}<br />
+        四星：{{Role.rank.type2.Star4}}<br />
+        三星：{{Role.rank.type2.Star3}}<br />
+        二星：{{Role.rank.type2.Star2}}<br /><br />
+        最快集完角色<br />
+        姓名：{{Role.rank.type3.Name}}<br />
+        總計：{{Role.rank.type3.Star4+Role.rank.type3.Star3+Role.rank.type3.Star2}}抽<br />
+        四星：{{Role.rank.type3.Star4}}<br />
+        三星：{{Role.rank.type3.Star3}}<br />
+        二星：{{Role.rank.type3.Star2}}<br />
+    </div>
+    <div ng-show="Role.choose == 'pick'">
+        <div class="k-card3" style="width:400px;height:770px;">
+            <div class="k-body">
+                <div ng-show="Role.nowShow=='input'">
+                    請輸入姓名
+                    <input type="text" style="margin-bottom:15px;" ng-model="Role.Info.Name" />
+                    <div ng-if="false">
+                        <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(1)">單抽</button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(10)">10+1抽</button>
+                    </div>
+                </div>
+                <div ng-show="Role.nowShow=='10'">
+                    <div style="width:100%;">
+                        <div class="inner-role" id="role11">
+
+                        </div>
+                    </div>
+                    <div class="inner-role" id="role1">
+
+                    </div>
+                    <div class="inner-role" id="role2">
+
+                    </div>
+                    <div class="inner-role" id="role3">
+
+                    </div>
+                    <div class="inner-role" id="role4">
+
+                    </div>
+                    <div class="inner-role" id="role5">
+
+                    </div>
+                    <div class="inner-role" id="role6">
+
+                    </div>
+                    <div class="inner-role" id="role7">
+
+                    </div>
+                    <div class="inner-role" id="role8">
+
+                    </div>
+                    <div class="inner-role" id="role9">
+
+                    </div>
+                    <div class="inner-role" id="role10">
+
+                    </div>
+                    <div style="width:100%;">
+                        <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(10)">繼續抽</button>
+                        <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.resetPick()">重置</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="inner-role">
-        <img id="role1_0" src="" style="display:none" />
-        <img id="role1_1" src="" style="display:none" />
-        <img id="role1_2" src="" style="display:none" />
-        <img id="role1_3" src="" style="display:none" />
-        <img id="role1_4" src="" style="display:none" />
+</div>
+<div class="out-Rbox" style="float:right;">
+    <div class="k-card">
+        <div class="k-body">
+            <div>
+                {{Role.Info.Name}}
+            </div>
+        </div>
     </div>
-    <div class="inner-role">
-        <img id="role2_0" src="" style="display:none" />
-        <img id="role2_1" src="" style="display:none" />
-        <img id="role2_2" src="" style="display:none" />
-        <img id="role2_3" src="" style="display:none" />
-        <img id="role2_4" src="" style="display:none" />
+    <div style="margin:15px;"></div>
+    <div class="k-card">
+        <div class="k-head">
+            本次抽角統計
+        </div>
+        <div class="k-body">
+            <div>　總計：{{Role.star.star2+Role.star.star3+Role.star.star4}}抽({{(((Role.star.star2+Role.star.star3+Role.star.star4)/11)*250)|number:'0'}}寶石)</div>
+            <div>二星角：{{Role.star.star2}}({{(Role.star.star2/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'}}%)</div>
+            <div>三星角：{{Role.star.star3}}({{(Role.star.star3/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'}}%)</div>
+            <div>四星角：{{Role.star.star4}}({{(Role.star.star4/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'}}%)</div>
+        </div>
     </div>
-    <div class="inner-role">
-        <img id="role3_0" src="" style="display:none" />
-        <img id="role3_1" src="" style="display:none" />
-        <img id="role3_2" src="" style="display:none" />
-        <img id="role3_3" src="" style="display:none" />
-        <img id="role3_4" src="" style="display:none" />
-
+    <div style="margin:15px;"></div>
+    <div class="k-card">
+        <div class="k-head">
+            已抽到
+        </div>
+        <div class="k-body">
+            <div ng-repeat="sceneRole in Role.sceneRole |orderBy:'Num':true" style="width:90px;display: inline-block;" ng-if="sceneRole.Num!=0">
+                <img style="height:50px;width:50px;" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
+                x{{sceneRole.Num}}
+            </div>
+        </div>
     </div>
-    <div class="inner-role">
-        <img id="role4_0" src="" style="display:none" />
-        <img id="role4_1" src="" style="display:none" />
-        <img id="role4_2" src="" style="display:none" />
-        <img id="role4_3" src="" style="display:none" />
-        <img id="role4_4" src="" style="display:none" />
-    </div>
-    <div class="inner-role">
-        <img id="role5_0" src="" style="display:none" />
-        <img id="role5_1" src="" style="display:none" />
-        <img id="role5_2" src="" style="display:none" />
-        <img id="role5_3" src="" style="display:none" />
-        <img id="role5_4" src="" style="display:none" />
-    </div>
-    <div class="inner-role">
-        <img id="role6_0" src="" style="display:none" />
-        <img id="role6_1" src="" style="display:none" />
-        <img id="role6_2" src="" style="display:none" />
-        <img id="role6_3" src="" style="display:none" />
-        <img id="role6_4" src="" style="display:none" />
-    </div>
-    <div class="inner-role">
-        <img id="role7_0" src="" style="display:none" />
-        <img id="role7_1" src="" style="display:none" />
-        <img id="role7_2" src="" style="display:none" />
-        <img id="role7_3" src="" style="display:none" />
-        <img id="role7_4" src="" style="display:none" />
-    </div>
-    <div class="inner-role">
-        <img id="role8_0" src="" style="display:none" />
-        <img id="role8_1" src="" style="display:none" />
-        <img id="role8_2" src="" style="display:none" />
-        <img id="role8_3" src="" style="display:none" />
-        <img id="role8_4" src="" style="display:none" />
-    </div>
-    <div class="inner-role">
-        <img id="role9_0" src="" style="display:none" />
-        <img id="role9_1" src="" style="display:none" />
-        <img id="role9_2" src="" style="display:none" />
-        <img id="role9_3" src="" style="display:none" />
-        <img id="role9_4" src="" style="display:none" />
-    </div>
-    <div class="inner-role">
-        <img id="role10_0" src="" style="display:none" />
-        <img id="role10_1" src="" style="display:none" />
-        <img id="role10_2" src="" style="display:none" />
-        <img id="role10_3" src="" style="display:none" />
-        <img id="role10_4" src="" style="display:none" />
-    </div>
-    <div style="width:100%;">
-        <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick()">抽角</button>
+    <div style="margin:15px;"></div>
+    <div class="k-card">
+        <div class="k-head">
+            未抽到
+        </div>
+        <div class="k-body" style="text-align:center;">
+            <div ng-repeat="sceneRole in Role.sceneRole" style="width:60px;display: inline-block;" ng-if="sceneRole.Num==0">
+                <img style="height:50px;width:50px;opacity:0.5" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
+            </div>
+        </div>
     </div>
 </div>

@@ -19,7 +19,7 @@
     Role.role = [];
 
     //取得該場景角色
-    $rootScope.getSceneRole = function (id) {       
+    $rootScope.getSceneRole = function (id) {
         Role.resetPick2();
         Role.Info.SceneID = id;
         var temp = {};
@@ -29,14 +29,18 @@
             url: '../WebAPI/Role.ashx?type=SceneRole',
             data: temp
         }).then(function successCallback(response) {
-            Role.sceneRole = response.data;
-            angular.forEach(Role.sceneRole, function (value, key) {
-                value.Num = 0;
-            });
-            Role.subFalg = true;
-            $("#change1").loadchange("off");
+            if (response.data != "無效的指令") {
+                Role.sceneRole = response.data;
+                angular.forEach(Role.sceneRole, function (value, key) {
+                    value.Num = 0;
+                });
+                Role.subFalg = true;
+                $("#change1").loadchange("off");
+            } else {
+                alert("連線失敗，免費空間不穩定請重整或稍後再試。");
+            }
         }, function errorCallback(response) {
-            alert("連線失敗，免費空間不穩定請重整或稍後再試");
+            alert("連線失敗，免費空間不穩定請重整或稍後再試。");
         });
     }
 
@@ -219,7 +223,7 @@
             url: '../WebAPI/Role.ashx?type=Clear',
             data: temp
         }).then(function successCallback(response) {
-            console.log(response.data);
+           
         }, function errorCallback(response) {
         });
     }
@@ -245,7 +249,6 @@
             data: temp
         }).then(function successCallback(response) {
             Role.rank = response.data;
-            console.log(Role.rank);
         }, function errorCallback(response) {
         });
     }

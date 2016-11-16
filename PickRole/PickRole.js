@@ -15,19 +15,22 @@ app.controller('PickRole', function ($rootScope, $scope, $http, $timeout) {
             method: 'POST',
             url: '../WebAPI/PickRole.ashx?type=getSence'
         }).then(function successCallback(response) {
-            PickRole.selectList = response.data;
-            PickRole.Img = "../Img/sence/" + PickRole.selectList[0].Src;
-            PickRole.SceneID = PickRole.selectList[0].SceneID;
-            PickRole.Name = PickRole.selectList[0].Name;
-            PickRole.s = PickRole.selectList[0].StartDate;
-            PickRole.e = PickRole.selectList[0].EndDate;
-            PickRole.getSceneNum();
-            if (!$rootScope.getSceneRole) {
-                $timeout(PickRole.getScene, 500);
+            if (response.data != "無效的指令") {
+                PickRole.selectList = response.data;
+                PickRole.Img = "../Img/sence/" + PickRole.selectList[0].Src;
+                PickRole.SceneID = PickRole.selectList[0].SceneID;
+                PickRole.Name = PickRole.selectList[0].Name;
+                PickRole.s = PickRole.selectList[0].StartDate;
+                PickRole.e = PickRole.selectList[0].EndDate;
+                PickRole.getSceneNum();
+                if (!$rootScope.getSceneRole) {
+                    $timeout(PickRole.getScene, 500);
+                } else {
+                    $rootScope.getSceneRole(PickRole.SceneID);
+                }
             } else {
-                $rootScope.getSceneRole(PickRole.SceneID);
+                alert("連線失敗，免費空間不穩定請重整或稍後再試。");
             }
-
         }, function errorCallback(response) {
             alert("連線失敗，免費空間不穩定請重整或稍後再試");
         });
@@ -64,7 +67,11 @@ app.controller('PickRole', function ($rootScope, $scope, $http, $timeout) {
             url: '../WebAPI/Role.ashx?type=sceneNum',
             data: temp
         }).then(function successCallback(response) {
-            PickRole.starNum = response.data;
+            if (response.data != "無效的指令") {
+                PickRole.starNum = response.data;
+            } else {
+                alert("連線失敗，免費空間不穩定請重整或稍後再試。");
+            }
         }, function errorCallback(response) {
             alert("連線失敗，免費空間不穩定請重整或稍後再試");
         });

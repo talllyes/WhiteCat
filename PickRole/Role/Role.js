@@ -36,6 +36,7 @@
             Role.subFalg = true;
             $("#change1").loadchange("off");
         }, function errorCallback(response) {
+            alert("連線失敗，免費空間不穩定請重整或稍後再試");
         });
     }
 

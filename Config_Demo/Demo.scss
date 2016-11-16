@@ -1,6 +1,7 @@
 ﻿@import "../Lib/tbkcplugin/Scss/var";
 
 body {
+    overflow-y: scroll;
 }
 
 .demoBodyRight {
@@ -168,9 +169,11 @@ body {
         margin-bottom: 1px;
     }
 }
+
 .k-card3 {
     border: 1px solid $color_黑2;
-    margin:auto;
+    margin: auto;
+
     .k-body {
         padding: 3px;
     }
@@ -186,10 +189,58 @@ body {
     }
 }
 
-.k-select{
-    cursor:pointer;
-
+.k-select {
+    cursor: pointer;
 }
-.k-select:hover{
-    font-weight:bold;
+
+.k-select:hover {
+    font-weight: bold;
+}
+
+.k-table {
+    padding: 0;
+    margin: 0;
+
+    tr {
+        padding: 0;
+        margin: 0;
+    }
+
+    td {
+        padding: 0;
+        margin: 0;
+    }
+
+    div {
+        border: 1px solid #FFDEDE;
+        border-left: 0;
+        padding: 10px;
+        cursor:pointer;
+    }
+
+    div:hover {
+        border-top: 3px solid #940000;
+        padding-top: 8px;
+    }
+
+    .left {
+        border-left: 1px solid #FFDEDE;
+    }
+
+    .spanon {
+        border: 0;
+        border-bottom: 1px solid #FFDEDE;
+        height: 46px;
+    }
+
+    .spanon:hover {
+        border-top: 0;
+        padding-top: 0;
+    }
+
+    .active {
+        border-bottom: 0;
+        border-top: 3px solid #0000DB;
+        padding-top: 8px;
+    }
 }

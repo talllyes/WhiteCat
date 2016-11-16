@@ -1,4 +1,4 @@
-﻿app.controller('Role', function ($scope, $http) {
+﻿app.controller('Role', function ($rootScope, $scope, $http, $routeParams) {
     var Role = this;
     Role.subFalg = false;            //按鈕顯示
     Role.nowShow = 'input';
@@ -18,10 +18,12 @@
     Role.sceneRole = [];            //該場景角色物件
     Role.role = [];
 
-    Role.Info.SceneID = 1;
     //取得該場景角色
-    function getSceneRole() {
-        var temp = Role.Info;
+    $rootScope.getSceneRole = function (id) {       
+        Role.resetPick2();
+        Role.Info.SceneID = id;
+        var temp = {};
+        temp.SceneID = id;
         $http({
             method: 'POST',
             url: '../WebAPI/Role.ashx?type=SceneRole',
@@ -32,29 +34,31 @@
                 value.Num = 0;
             });
             Role.subFalg = true;
+            $("#change1").loadchange("off");
         }, function errorCallback(response) {
         });
     }
-    getSceneRole();
 
     //抽角按紐
     Role.pick = function (type) {
-        Role.subFalg = false;
-        if (Role.Info.Name == "") {
-            Role.Info.Name = "無名氏";
-        }
-        if (type == 1) {
-            Role.pickTime = Role.pickTime + 1;
-        }
-        else if (type == 10) {
-            Role.pickTime = Role.pickTime + 11;
-            if (Role.nowShow == 'input') {
-                Role.nowShow = "10";
+        if (Role.subFalg) {
+            Role.subFalg = false;
+            if (Role.Info.Name == "") {
+                Role.Info.Name = "無名氏";
             }
-            for (var i = 1; i < 12; i++) {
-                $("#role" + i).empty();
+            if (type == 1) {
+                Role.pickTime = Role.pickTime + 1;
             }
-            randStar(1);
+            else if (type == 10) {
+                Role.pickTime = Role.pickTime + 11;
+                if (Role.nowShow == 'input') {
+                    Role.nowShow = "10";
+                }
+                for (var i = 1; i < 12; i++) {
+                    $("#role" + i).empty();
+                }
+                randStar(1);
+            }
         }
     }
     function randStar(id) {
@@ -87,7 +91,7 @@
         }).animate({
             opacity: 1,
             top: "0"
-        }, 300, function () {
+        }, 100, function () {
             if (id == 11) {
                 randRole(1);
             }
@@ -164,7 +168,7 @@
                 top: 0,
                 left: 0
             }, 100);
-            setTimeout(function () { randRoleGo(id, index + 1); }, 500);
+            setTimeout(function () { randRoleGo(id, index + 1); }, 200);
         } else {
             if (id == 11) {
                 Role.subFalg = true;
@@ -246,7 +250,44 @@
     }
 
     Role.resetPick = function () {
-        location.href = "../PickRole/PickRole.html";
+        var id = Role.Info.SceneID;
+        Role.subFalg = false;            //按鈕顯示
+        Role.nowShow = 'input';
+        Role.choose = "pick";
+        Role.pickTime = 0;
+        Role.rank = [];
+        Role.star = {
+            star2: 0,
+            star3: 0,
+            star4: 0,
+        };
+        Role.Info = {
+            Name: "",
+            SceneID: 0,
+            flag: false
+        };
+        Role.sceneRole = [];            //該場景角色物件
+        Role.role = [];
+        $rootScope.getSceneRole(id);
+    }
+    Role.resetPick2 = function () {
+        Role.subFalg = false;            //按鈕顯示
+        Role.nowShow = 'input';
+        Role.choose = "pick";
+        Role.pickTime = 0;
+        Role.rank = [];
+        Role.star = {
+            star2: 0,
+            star3: 0,
+            star4: 0,
+        };
+        Role.Info = {
+            Name: "",
+            SceneID: 0,
+            flag: false
+        };
+        Role.sceneRole = [];            //該場景角色物件
+        Role.role = [];
     }
 });
 

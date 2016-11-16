@@ -36,8 +36,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">抽角模擬器</a>
                     <div class="dropdown-menu" style="line-height:26px;">
-                        <a class="dropdown-item" href="../PickRole/PickRole.html">聖女與希望之風</a>
-                        <a class="dropdown-item" href="#">test</a>
+                        <a class="dropdown-item" ng-repeat="selectList in PickRole.selectList" ng-click="PickRole.changeSence(selectList.SceneID)">{{selectList.Name}}</a>
                     </div>
                 </li>
             </ul>
@@ -45,43 +44,55 @@
     </div>
     <div style="height:auto;position:relative;background-color:#FFE8E8;">
         <div style="position:absolute;width:100%;height:100%;background-color:white;opacity:0.2;"></div>
-        <div class="zone" style="text-align:center;">
-            <img style="height:250px;" src="../Img/sence/1.jpg" />
+        <div class="zone">
+            <div style="width:1220px;height:220px;margin:auto;padding-top:20px;">
+                <div class="card" style="display:inline-block">
+                    <img style="height:180px;" ng-src="{{PickRole.Img}}" class="rounded">
+                </div>
+                <div style="display:inline-block;vertical-align:top;margin-left:30px;">
+                    <span style="font-size:60px;font-weight:bold;" ng-bind-html="PickRole.Name"></span>
+                    <br />
+                    <span style="font-size:20px;" ng-bind-html="PickRole.s|date:'yyyy-MM-dd HH:mm'+' ～ '"></span>
+                    <span style="font-size:20px;" ng-bind-html="PickRole.e|date:'yyyy-MM-dd HH:mm'"></span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="k-body">
         <div class="zone">
-            <div class="demoBodyRight">
-                <ng-view></ng-view>
-            </div>
-            <div class="demoBodyLeft">
-                <div class="k-card">
-                    <div class="k-head">
-                        累積抽角樣本數
-                    </div><div class="k-body">
-                        <div>
-                            <span>　</span>總計：{{PickRole.starNum.star.starC}}抽
-                        </div>
-                        <div>
-                            二星角：{{PickRole.starNum.star.star2}}次({{(PickRole.starNum.star.star2/PickRole.starNum.star.starC*100)|number:'2'}}％)
-                        </div>
-                        <div>
-                            三星角：{{PickRole.starNum.star.star3}}次({{(PickRole.starNum.star.star3/PickRole.starNum.star.starC*100)|number:'2'}}％)
-                        </div>
-                        <div>
-                            四星角：{{PickRole.starNum.star.star4}}次({{(PickRole.starNum.star.star4/PickRole.starNum.star.starC*100)|number:'2'}}％)
-                        </div>
-                    </div>
+            <div id="change1" data-loadstyle="loading6" style="position:absolute;left:-2000px;">
+                <div class="demoBodyRight">
+                    <ng-view></ng-view>
                 </div>
-                <br />
-                <div ng-repeat="star4 in PickRole.starNum.star4" class="k-card2">
-                    <div class="k-body" style="text-align:center;">
-                        <img style="width:50px;height:50px;" ng-src="../Img/role4/{{star4.RoleID}}.png" />
-                        {{(star4.Count*100/PickRole.starNum.starC2)|number:'2'}}％
+                <div class="demoBodyLeft">
+                    <div class="k-card">
+                        <div class="k-head">
+                            累積抽角樣本數
+                        </div><div class="k-body">
+                            <div>
+                                <span>　</span>總計：<span ng-bind-html="PickRole.starNum.star.starC"></span>抽
+                            </div>
+                            <div>
+                                二星角：<span ng-bind-html="PickRole.starNum.star.star2"></span>次(<span ng-bind-html="(PickRole.starNum.star.star2/PickRole.starNum.star.starC*100)|number:'2'"></span>％)
+                            </div>
+                            <div>
+                                三星角：<span ng-bind-html="PickRole.starNum.star.star3"></span>次(<span ng-bind-html="(PickRole.starNum.star.star3/PickRole.starNum.star.starC*100)|number:'2'"></span>％)
+                            </div>
+                            <div>
+                                四星角：<span ng-bind-html="PickRole.starNum.star.star4"></span>次(<span ng-bind-html="(PickRole.starNum.star.star4/PickRole.starNum.star.starC*100)|number:'2'"></span>％)
+                            </div>
+                        </div>
                     </div>
-                    <div class="k-line"></div>
-                    <div class="k-font" style="text-align:center;">
-                        {{star4.Name}}
+                    <br />
+                    <div ng-repeat="star4 in PickRole.starNum.star4" class="k-card2">
+                        <div class="k-body" style="text-align:center;">
+                            <img style="width:50px;height:50px;" ng-src="../Img/role4/{{star4.RoleID}}.png" />
+                            <span ng-bind-html="(star4.Count*100/PickRole.starNum.starC2)|number:'2'"></span>％
+                        </div>
+                        <div class="k-line"></div>
+                        <div class="k-font" style="text-align:center;">
+                            <span ng-bind-html="star4.Name"></span>
+                        </div>
                     </div>
                 </div>
             </div>

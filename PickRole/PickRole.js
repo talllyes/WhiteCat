@@ -1,6 +1,6 @@
 ﻿var app = angular.module('PickRoleApp', ['ngRoute', 'ngSanitize']);
 
-app.controller('PickRole', function ($rootScope, $scope, $http) {
+app.controller('PickRole', function ($rootScope, $scope, $http, $timeout) {
     var PickRole = this;
     PickRole.starNum = {};
     PickRole.selectList = [];
@@ -16,13 +16,18 @@ app.controller('PickRole', function ($rootScope, $scope, $http) {
             url: '../WebAPI/PickRole.ashx?type=getSence'
         }).then(function successCallback(response) {
             PickRole.selectList = response.data;
-            PickRole.Img = "../Img/sence/"+PickRole.selectList[0].Src;
+            PickRole.Img = "../Img/sence/" + PickRole.selectList[0].Src;
             PickRole.SceneID = PickRole.selectList[0].SceneID;
             PickRole.Name = PickRole.selectList[0].Name;
             PickRole.s = PickRole.selectList[0].StartDate;
             PickRole.e = PickRole.selectList[0].EndDate;
             PickRole.getSceneNum();
-            $rootScope.getSceneRole(PickRole.SceneID);
+            if (!$rootScope.getSceneRole) {
+                $timeout(PickRole.getScene, 500);
+            } else {
+                $rootScope.getSceneRole(PickRole.SceneID);
+            }
+
         }, function errorCallback(response) {
             alert("連線失敗，免費空間不穩定請重整或稍後再試");
         });
@@ -51,7 +56,7 @@ app.controller('PickRole', function ($rootScope, $scope, $http) {
     }
 
     PickRole.getScene();
-    PickRole.getSceneNum=function() {
+    PickRole.getSceneNum = function () {
         var temp = {};
         temp.SceneID = PickRole.SceneID;
         $http({

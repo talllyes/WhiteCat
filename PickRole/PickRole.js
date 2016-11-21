@@ -9,6 +9,7 @@ app.controller('PickRole', function ($rootScope, $scope, $http, $timeout) {
     PickRole.s = "";
     PickRole.e = "";
     PickRole.SceneID = 0;
+    PickRole.today = new Date();
     PickRole.getScene = function () {
         $("#change1").loadchange("on");
         $http({

@@ -1,210 +1,215 @@
-﻿<div class="out-box" style="width:550px;text-align:center;">
-    <div style="margin-bottom:20px;">
-        <table class="k-table" style="width:100%;">
-            <tbody>
-                <tr>
-                    <td style="width:100px;">
-                        <div class="left" ng-click="Role.choose = 'pick'"
-                             ng-class="{active:Role.choose == 'pick'}">抽角</div>
-                    </td>
-                    <td style="width:100px;">
-                        <div ng-click="Role.getRank()"
-                             ng-class="{active:Role.choose == 'rank'}">排行榜</div>
-                    </td>
-                    <td>
-                        <div class="spanon">
+﻿<div ng-if="(PickRole.e|date:'yyyyMMddHHmm')>(PickRole.today|date:'yyyyMMddHHmm')">
+    <div class="out-box" style="width:550px;text-align:center;">
+        <div style="margin-bottom:20px;">
+            <table class="k-table" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="width:100px;">
+                            <div class="left" ng-click="Role.choose = 'pick'"
+                                 ng-class="{active:Role.choose == 'pick'}">抽角</div>
+                        </td>
+                        <td style="width:100px;">
+                            <div ng-click="Role.getRank()"
+                                 ng-class="{active:Role.choose == 'rank'}">排行榜</div>
+                        </td>
+                        <td>
+                            <div class="spanon">
 
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-show="Role.choose == 'rank'">
+            <div class="k-card">
+                <div class="k-head" style="text-align:left;">
+                    <div style="width:160px;margin:auto;">
+                        歐洲人國王(前110抽)
+                    </div>
+                </div>
+                <div class="k-body" style="text-align:left;">
+                    <div style="width:160px;margin:auto;">
+                        <div>
+                            <span>　</span>姓名：{{Role.rank.type1.Name}}
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div ng-show="Role.choose == 'rank'">
-        <div class="k-card">
-            <div class="k-head" style="text-align:left;">
-                <div style="width:160px;margin:auto;">
-                    歐洲人國王(前110抽)
-                </div>
-            </div>
-            <div class="k-body" style="text-align:left;">
-                <div style="width:160px;margin:auto;">
-                    <div>
-                        <span>　</span>姓名：{{Role.rank.type1.Name}}
-                    </div>
-                    <div>
-                        四星角：{{Role.rank.type1.Star4}}({{Role.rank.type1.Star4/(Role.rank.type1.Star2+Role.rank.type1.Star3+Role.rank.type1.Star4)*100|number:'2'}}％)
-                    </div>
-                    <div>
-                        三星角：{{Role.rank.type1.Star3}}({{Role.rank.type1.Star3/(Role.rank.type1.Star2+Role.rank.type1.Star3+Role.rank.type1.Star4)*100|number:'2'}}％)
-                    </div>
-                    <div>
-                        二星角：{{Role.rank.type1.Star2}}({{Role.rank.type1.Star2/(Role.rank.type1.Star2+Role.rank.type1.Star3+Role.rank.type1.Star4)*100|number:'2'}}％)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <div class="k-card">
-            <div class="k-head" style="text-align:left;">
-                <div style="width:160px;margin:auto;">
-                    非洲人酋長(前110抽)
-                </div>
-            </div>
-            <div class="k-body" style="text-align:left;">
-                <div style="width:160px;margin:auto;">
-                    <div>
-                        <span>　</span>
-                        姓名：{{Role.rank.type2.Name}}
-                    </div>
-                    <div>
-                        四星角：{{Role.rank.type2.Star4}}({{Role.rank.type2.Star4/(Role.rank.type2.Star2+Role.rank.type2.Star3+Role.rank.type2.Star4)*100|number:'2'}}％)
-                    </div>
-                    <div>
-                        三星角：{{Role.rank.type2.Star3}}({{Role.rank.type2.Star3/(Role.rank.type2.Star2+Role.rank.type2.Star3+Role.rank.type2.Star4)*100|number:'2'}}％)
-                    </div>
-                    <div>
-                        二星角：{{Role.rank.type2.Star2}}({{Role.rank.type2.Star2/(Role.rank.type2.Star2+Role.rank.type2.Star3+Role.rank.type2.Star4)*100|number:'2'}}％)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br />
-        <div class="k-card" style="text-align:left;">
-            <div class="k-head">
-                <div style="width:160px;margin:auto;">
-                    最快集完角色
-                </div>
-            </div>
-            <div class="k-body" style="text-align:left;">
-                <div style="width:160px;margin:auto;">
-                    <div>
-                        <span>　</span>姓名：{{Role.rank.type3.Name}}
-                    </div>
-                    <div>
-                        <span>　</span>總計：{{Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4}}抽
-                    </div>
-                    <div><span>　　　　</span>({{(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*25}}寶石)</div>
-                    <div>
-                        四星角：{{Role.rank.type3.Star4}}({{Role.rank.type3.Star4/(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*100|number:'2'}}%)
-                    </div>
-                    <div>
-                        三星角：{{Role.rank.type3.Star3}}({{Role.rank.type3.Star3/(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*100|number:'2'}}%)
-                    </div>
-                    <div>
-                        二星角：{{Role.rank.type3.Star2}}({{Role.rank.type3.Star2/(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*100|number:'2'}}%)
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div ng-show="Role.choose == 'pick'">
-        <div class="k-card3" style="width:400px;">
-            <div class="k-body">
-                <div ng-show="Role.nowShow=='input'">
-                    <div class="k-card">
-                        <div class="k-head">
-                            請輸入姓名
+                        <div>
+                            四星角：{{Role.rank.type1.Star4}}({{Role.rank.type1.Star4/(Role.rank.type1.Star2+Role.rank.type1.Star3+Role.rank.type1.Star4)*100|number:'2'}}％)
                         </div>
-                        <div class="k-body">
-                            <input type="text" style="width:100%" ng-model="Role.Info.Name" />
-                            <div ng-if="false">
-                                <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(1)">單抽</button>
+                        <div>
+                            三星角：{{Role.rank.type1.Star3}}({{Role.rank.type1.Star3/(Role.rank.type1.Star2+Role.rank.type1.Star3+Role.rank.type1.Star4)*100|number:'2'}}％)
+                        </div>
+                        <div>
+                            二星角：{{Role.rank.type1.Star2}}({{Role.rank.type1.Star2/(Role.rank.type1.Star2+Role.rank.type1.Star3+Role.rank.type1.Star4)*100|number:'2'}}％)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="k-card">
+                <div class="k-head" style="text-align:left;">
+                    <div style="width:160px;margin:auto;">
+                        非洲人酋長(前110抽)
+                    </div>
+                </div>
+                <div class="k-body" style="text-align:left;">
+                    <div style="width:160px;margin:auto;">
+                        <div>
+                            <span>　</span>
+                            姓名：{{Role.rank.type2.Name}}
+                        </div>
+                        <div>
+                            四星角：{{Role.rank.type2.Star4}}({{Role.rank.type2.Star4/(Role.rank.type2.Star2+Role.rank.type2.Star3+Role.rank.type2.Star4)*100|number:'2'}}％)
+                        </div>
+                        <div>
+                            三星角：{{Role.rank.type2.Star3}}({{Role.rank.type2.Star3/(Role.rank.type2.Star2+Role.rank.type2.Star3+Role.rank.type2.Star4)*100|number:'2'}}％)
+                        </div>
+                        <div>
+                            二星角：{{Role.rank.type2.Star2}}({{Role.rank.type2.Star2/(Role.rank.type2.Star2+Role.rank.type2.Star3+Role.rank.type2.Star4)*100|number:'2'}}％)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="k-card" style="text-align:left;">
+                <div class="k-head">
+                    <div style="width:160px;margin:auto;">
+                        最快集完角色
+                    </div>
+                </div>
+                <div class="k-body" style="text-align:left;">
+                    <div style="width:160px;margin:auto;">
+                        <div>
+                            <span>　</span>姓名：{{Role.rank.type3.Name}}
+                        </div>
+                        <div>
+                            <span>　</span>總計：{{Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4}}抽
+                        </div>
+                        <div><span>　　　　</span>({{(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*25}}寶石)</div>
+                        <div>
+                            四星角：{{Role.rank.type3.Star4}}({{Role.rank.type3.Star4/(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*100|number:'2'}}%)
+                        </div>
+                        <div>
+                            三星角：{{Role.rank.type3.Star3}}({{Role.rank.type3.Star3/(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*100|number:'2'}}%)
+                        </div>
+                        <div>
+                            二星角：{{Role.rank.type3.Star2}}({{Role.rank.type3.Star2/(Role.rank.type3.Star2+Role.rank.type3.Star3+Role.rank.type3.Star4)*100|number:'2'}}%)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="Role.choose == 'pick'">
+            <div class="k-card3" style="width:400px;">
+                <div class="k-body">
+                    <div ng-show="Role.nowShow=='input'">
+                        <div class="k-card">
+                            <div class="k-head">
+                                請輸入姓名
+                            </div>
+                            <div class="k-body">
+                                <input type="text" style="width:100%" ng-model="Role.Info.Name" />
+                                <div ng-if="false">
+                                    <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(1)">單抽</button>
+                                </div>
+                            </div>
+                            <div style="border-top:1px solid #FFDEDE;padding:5px;">
+                                <button style="width:100%;" class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(10)">10+1抽</button>
                             </div>
                         </div>
-                        <div style="border-top:1px solid #FFDEDE;padding:5px;">
-                            <button style="width:100%;" class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(10)">10+1抽</button>
+                    </div>
+                    <div ng-show="Role.nowShow=='10'">
+                        <div style="width:100%;">
+                            <div class="inner-role" id="role11">
+
+                            </div>
+                        </div>
+                        <div class="inner-role" id="role1">
+
+                        </div>
+                        <div class="inner-role" id="role2">
+
+                        </div>
+                        <div class="inner-role" id="role3">
+
+                        </div>
+                        <div class="inner-role" id="role4">
+
+                        </div>
+                        <div class="inner-role" id="role5">
+
+                        </div>
+                        <div class="inner-role" id="role6">
+
+                        </div>
+                        <div class="inner-role" id="role7">
+
+                        </div>
+                        <div class="inner-role" id="role8">
+
+                        </div>
+                        <div class="inner-role" id="role9">
+
+                        </div>
+                        <div class="inner-role" id="role10">
+
+                        </div>
+                        <div style="width:100%;height:48px;padding:5px;">
+                            <button class="btn btn-primary" style="width:100%;" ng-show="Role.subFalg" ng-click="Role.pick(10)">繼續抽</button>
                         </div>
                     </div>
                 </div>
-                <div ng-show="Role.nowShow=='10'">
-                    <div style="width:100%;">
-                        <div class="inner-role" id="role11">
-
-                        </div>
-                    </div>
-                    <div class="inner-role" id="role1">
-
-                    </div>
-                    <div class="inner-role" id="role2">
-
-                    </div>
-                    <div class="inner-role" id="role3">
-
-                    </div>
-                    <div class="inner-role" id="role4">
-
-                    </div>
-                    <div class="inner-role" id="role5">
-
-                    </div>
-                    <div class="inner-role" id="role6">
-
-                    </div>
-                    <div class="inner-role" id="role7">
-
-                    </div>
-                    <div class="inner-role" id="role8">
-
-                    </div>
-                    <div class="inner-role" id="role9">
-
-                    </div>
-                    <div class="inner-role" id="role10">
-
-                    </div>
-                    <div style="width:100%;height:48px;padding:5px;">
-                        <button class="btn btn-primary" style="width:100%;" ng-show="Role.subFalg" ng-click="Role.pick(10)">繼續抽</button>
-                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="out-Rbox" style="float:right;">
+        <div class="k-card">
+            <div class="k-body">
+                <div style="height:38px;line-height:38px;vertical-align:middle;text-align:center;">{{Role.Info.Name}}</div>
+            </div>
+            <div style="border-top:1px solid #FFDEDE;padding:5px;">
+                <button class="btn btn-primary" style="width:100%;" ng-disabled="!Role.subFalg" ng-click="Role.resetPick()">重置</button>
+            </div>
+        </div>
+        <div style="margin:15px;"></div>
+        <div class="k-card">
+            <div class="k-head">
+                本次抽角統計
+            </div>
+            <div class="k-body">
+                <div>
+                    <span>　</span>總計：<span ng-bind-html="Role.star.star2+Role.star.star3+Role.star.star4"></span>抽(<span ng-bind-html="(((Role.star.star2+Role.star.star3+Role.star.star4)/11)*250)|number:'0'"></span>寶石)
+                </div>
+                <div>二星角：<span ng-bind-html="Role.star.star2"></span>(<span ng-bind-html="(Role.star.star2/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
+                <div>三星角：<span ng-bind-html="Role.star.star3"></span>(<span ng-bind-html="(Role.star.star3/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
+                <div>四星角：<span ng-bind-html="Role.star.star4"></span>(<span ng-bind-html="(Role.star.star4/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
+            </div>
+        </div>
+        <div style="margin:15px;"></div>
+        <div class="k-card">
+            <div class="k-head">
+                已抽到
+            </div>
+            <div class="k-body">
+                <div ng-repeat="sceneRole in Role.sceneRole |orderBy:'Num':true" style="width:90px;display: inline-block;" ng-if="sceneRole.Num!=0">
+                    <img style="height:50px;width:50px;" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
+                    x{{sceneRole.Num}}
+                </div>
+            </div>
+        </div>
+        <div style="margin:15px;"></div>
+        <div class="k-card">
+            <div class="k-head">
+                未抽到
+            </div>
+            <div class="k-body" style="text-align:center;">
+                <div ng-repeat="sceneRole in Role.sceneRole" style="width:60px;display: inline-block;" ng-if="sceneRole.Num==0">
+                    <img style="height:50px;width:50px;opacity:0.5" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="out-Rbox" style="float:right;">
-    <div class="k-card">
-        <div class="k-body">
-            <div style="height:38px;line-height:38px;vertical-align:middle;text-align:center;">{{Role.Info.Name}}</div>
-        </div>
-        <div style="border-top:1px solid #FFDEDE;padding:5px;">
-            <button class="btn btn-primary" style="width:100%;" ng-disabled="!Role.subFalg" ng-click="Role.resetPick()">重置</button>
-        </div>
-    </div>
-    <div style="margin:15px;"></div>
-    <div class="k-card">
-        <div class="k-head">
-            本次抽角統計
-        </div>
-        <div class="k-body">
-            <div>
-                <span>　</span>總計：<span ng-bind-html="Role.star.star2+Role.star.star3+Role.star.star4"></span>抽(<span ng-bind-html="(((Role.star.star2+Role.star.star3+Role.star.star4)/11)*250)|number:'0'"></span>寶石)
-            </div>
-            <div>二星角：<span ng-bind-html="Role.star.star2"></span>(<span ng-bind-html="(Role.star.star2/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
-            <div>三星角：<span ng-bind-html="Role.star.star3"></span>(<span ng-bind-html="(Role.star.star3/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
-            <div>四星角：<span ng-bind-html="Role.star.star4"></span>(<span ng-bind-html="(Role.star.star4/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
-        </div>
-    </div>
-    <div style="margin:15px;"></div>
-    <div class="k-card">
-        <div class="k-head">
-            已抽到
-        </div>
-        <div class="k-body">
-            <div ng-repeat="sceneRole in Role.sceneRole |orderBy:'Num':true" style="width:90px;display: inline-block;" ng-if="sceneRole.Num!=0">
-                <img style="height:50px;width:50px;" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
-                x{{sceneRole.Num}}
-            </div>
-        </div>
-    </div>
-    <div style="margin:15px;"></div>
-    <div class="k-card">
-        <div class="k-head">
-            未抽到
-        </div>
-        <div class="k-body" style="text-align:center;">
-            <div ng-repeat="sceneRole in Role.sceneRole" style="width:60px;display: inline-block;" ng-if="sceneRole.Num==0">
-                <img style="height:50px;width:50px;opacity:0.5" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
-            </div>
-        </div>
-    </div>
+<div ng-if="(PickRole.e|date:'yyyyMMddHHmm')<(PickRole.today|date:'yyyyMMddHHmm')">
+    本活動已過期
 </div>

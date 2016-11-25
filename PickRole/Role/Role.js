@@ -18,6 +18,7 @@
     Role.today = new Date;
     Role.sceneRole = [];            //該場景角色物件
     Role.role = [];
+    Role.restBtn = false;
     Role.senceContent = "";
     $("#change1").loadchange("on", 1000);
     Role.getSceneNum = function () {
@@ -43,6 +44,7 @@
     Role.pick = function (type) {
         if (Role.subFalg) {
             Role.subFalg = false;
+            Role.restBtn = true;
             if (Role.Info.Name == "") {
                 Role.Info.Name = "無名氏";
             }
@@ -72,11 +74,11 @@
         var minNum = 1;
         var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
         var newImg;
-        if (n > 0 && n < 46) {
+        if (n > 0 && n < 48) {
             var src = "../../Img/roleW/1.png";
             newImg = $("<img src='" + src + "' data-star='2' />");
             $("#role" + id).append(newImg);
-        } else if (n > 45 && n < 91) {
+        } else if (n > 47 && n < 93) {
             var src = "../../Img/roleG/1.png";
             newImg = $("<img src='" + src + "' data-star='3' />");
             $("#role" + id).append(newImg);
@@ -172,6 +174,7 @@
         } else {
             if (id == 11) {
                 Role.subFalg = true;
+                Role.restBtn = false;
                 updateRoleNum();
             }
         }

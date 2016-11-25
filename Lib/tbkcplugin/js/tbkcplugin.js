@@ -53,7 +53,7 @@
                     model.animate({ opacity: "0" }, 100, function () {
                         if (msgboxNum < 1) {
                             $("body").css({
-                                overflow: "auto",
+                                overflow: "",
                                 paddingRight: ""
                             });
                         }
@@ -79,9 +79,10 @@
         return this.each(function () {
             var inTime = 0;
             var div = $(this);
-            div.displayOff = function () {
-                div.css("display", "");
-                $(div).trigger('display.off');
+            var divID = div.attr("id");
+            var loadDivNum = $("[data-loaddivid=" + divID + "]").length;
+            div.loadEnd = function () {
+                $(div).trigger('loading.end');
             }
             if (action == "on" || action == "off") {
                 if (!isNaN(time)) {
@@ -91,15 +92,15 @@
                 inTime = action;
             }
             if (action == "on") {
-                if (!div.next().hasClass('k-loading')) {
+                if (loadDivNum == 0) {
                     on();
                 }
             } else if (action == "off") {
-                if (div.next().hasClass('k-loading')) {
+                if (loadDivNum > 0) {
                     off();
                 }
             } else {
-                if (!div.next().hasClass('k-loading')) {
+                if (loadDivNum == 0) {
                     on();
                 } else {
                     off();
@@ -109,9 +110,9 @@
                 div.data('time', inTime);
                 setTimeout(timeTo, 100);
                 var style = div.data("loadstyle");
-                div.css({ position: "absolute", left: "-2000px" });
-                // div.css("display", "none");
-                div.after(eval(style));
+                div.css({ position: "absolute", top: "-2000px" });
+                var loadDiv = "<div data-loaddivid='" + divID + "'>" + eval(style) + "</div>";
+                div.after(loadDiv);
             }
             function timeTo() {
                 var tt = div.data('time');
@@ -124,16 +125,20 @@
                 var tt = div.data('time');
                 if (tt > 0) {
                     setTimeout(off, 100);
-                } else {
-                    div.next().remove();
-                    div.displayOff();
-                    div.css({ position: "", left: "" ,opacity: 0});
+                } else if (tt <= 0) {
+                    div.loadEnd();
+                    $("[data-loaddivid=" + divID + "]").remove();
+                    div.css({ position: "", top: "", opacity: 0 });
                     div.animate({ opacity: "1" }, 500);
                 }
             }
         });
-
     };
+
+    function getLoadStyle() {
+
+    }
+
 
     var loading1 = `<div class ="loading1 k-loading">
                         <div class ="loader-inner">
@@ -277,7 +282,16 @@
     </div>
 </div>
 `;
-
+    var loading8 = `<div class="loading8 k-loading">
+          <div class ="loader-inner">
+        <div class="loader">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div></div></div>
+`;
 
 })(jQuery);
 
@@ -332,7 +346,16 @@
 
 
 
-
+//標籤tabs事件
+(function ($) {
+    $(document).on('click', '[data-tabs] td', function (event) {
+        if (!$(this).hasClass("div-no-last") && !$(this).hasClass("div-no-first")) {
+            var tabs = $(this).parent().parent().parent().data("tabs");
+            $("[data-tabs=" + tabs + "] td").removeClass("active");
+            $(this).addClass("active");
+        }
+    })
+})(jQuery);
 
 
 

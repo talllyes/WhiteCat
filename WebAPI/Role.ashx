@@ -33,13 +33,14 @@ public class keyin : IHttpHandler, IRequiresSessionState
                 dynamic json = JValue.Parse(str);
                 bool flag = json.Info.flag;
                 string name = json.Info.Name;
-                int SceneID = json.Info.SceneID;
+                string ss = json.Info.SceneID;
+                int SceneID = Int32.Parse(ss);
                 var star2 = (from a in DB.Pick
-                             where a.star == "2" && a.RoleID == 0 && a.SceneID == SceneID
-                             select a).SingleOrDefault();
+                             where a.star == "2" && a.SceneID == SceneID
+                             select a).FirstOrDefault();
                 var star3 = (from a in DB.Pick
-                             where a.star == "3" && a.RoleID == 0 && a.SceneID == SceneID
-                             select a).SingleOrDefault();
+                             where a.star == "3" && a.SceneID == SceneID
+                             select a).FirstOrDefault();
 
                 foreach (string temp in json.role)
                 {
@@ -130,7 +131,8 @@ public class keyin : IHttpHandler, IRequiresSessionState
             {
                 string str = new System.IO.StreamReader(context.Request.InputStream).ReadToEnd();
                 dynamic json = JValue.Parse(str);
-                int SceneID = json.SceneID;
+                string gg = json.SceneID;
+                int SceneID = Int32.Parse(gg);
 
                 var pickTemp = from a in DB.Pick
                                where a.SceneID == SceneID
@@ -200,16 +202,25 @@ public class keyin : IHttpHandler, IRequiresSessionState
             {
                 string str = new System.IO.StreamReader(context.Request.InputStream).ReadToEnd();
                 dynamic json = JValue.Parse(str);
-                int SceneID = json.SceneID;
-                var result = from a in DB.Pick
-                             join b in DB.Role on a.RoleID equals b.RoleID
-                             where a.SceneID == SceneID && a.star == "4"
-                             select new
-                             {
-                                 a.RoleID,
-                                 b.Name,
-                                 b.Src
-                             };
+                string tt = json.SceneID;
+                int SceneID = Int32.Parse(tt);
+                var role = from a in DB.Pick
+                           join b in DB.Role on a.RoleID equals b.RoleID
+                           where a.SceneID == SceneID && a.star == "4"
+                           select new
+                           {
+                               a.RoleID,
+                               b.Name,
+                               b.Src
+                           };
+                var scene = (from a in DB.Scene
+                             where a.SceneID == SceneID
+                             select a).FirstOrDefault();
+
+
+                Dictionary<string, dynamic> result = new Dictionary<string, dynamic>();
+                result.Add("role", role);
+                result.Add("scene", scene);
 
                 context.Response.ContentType = "text/plain";
                 context.Response.Write(JsonConvert.SerializeObject(result));

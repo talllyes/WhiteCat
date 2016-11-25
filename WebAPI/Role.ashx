@@ -215,7 +215,15 @@ public class keyin : IHttpHandler, IRequiresSessionState
                            };
                 var scene = (from a in DB.Scene
                              where a.SceneID == SceneID
-                             select a).FirstOrDefault();
+                             select new
+                             {
+                                 a.Name,
+                                 a.SceneID,
+                                 a.Src,
+                                 a.EndDate,
+                                 a.StartDate,
+                                 End=a.EndDate < DateTime.Now
+                             }).FirstOrDefault();
 
 
                 Dictionary<string, dynamic> result = new Dictionary<string, dynamic>();

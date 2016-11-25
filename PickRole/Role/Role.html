@@ -20,7 +20,7 @@
     <div class="zone">
         <div id="change1" data-loadstyle="loading6">
             <div class="demoBodyRight">
-                <div ng-if="(Role.senceContent.EndDate|date:'yyyyMMddHHmm')>(Role.today|date:'yyyyMMddHHmm')">
+                <div>
                     <div class="out-box" style="width:550px;text-align:center;">
                         <div style="margin-bottom:20px;">
                             <table class="k-table" data-tabs="demo1">
@@ -123,71 +123,76 @@
                             </div>
                         </div>
                         <div ng-show="Role.choose == 'pick'">
-                            <div class="k-card3" style="width:400px;">
-                                <div class="k-body">
-                                    <div ng-show="Role.nowShow=='input'">
-                                        <div ng-if="Role.subFalg">
-                                            <div class="k-card">
-                                                <div class="k-head">
-                                                    請輸入姓名
-                                                </div>
-                                                <div class="k-body">
-                                                    <input type="text" style="width:100%" ng-model="Role.Info.Name" />
-                                                    <div ng-if="false">
-                                                        <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(1)">單抽</button>
+                            <div ng-if="!Role.senceContent.End">
+                                <div class="k-card3" style="width:400px;">
+                                    <div class="k-body">
+                                        <div ng-show="Role.nowShow=='input'">
+                                            <div ng-if="Role.subFalg">
+                                                <div class="k-card">
+                                                    <div class="k-head">
+                                                        請輸入姓名
+                                                    </div>
+                                                    <div class="k-body">
+                                                        <input type="text" style="width:100%" ng-model="Role.Info.Name" />
+                                                        <div ng-if="false">
+                                                            <button class="btn btn-primary" ng-if="Role.subFalg" ng-click="Role.pick(1)">單抽</button>
+                                                        </div>
+                                                    </div>
+                                                    <div style="border-top:1px solid #FFDEDE;padding:5px;">
+                                                        <button style="width:100%;" class="btn btn-primary" ng-click="Role.pick(10)">10+1抽</button>
                                                     </div>
                                                 </div>
-                                                <div style="border-top:1px solid #FFDEDE;padding:5px;">
-                                                    <button style="width:100%;" class="btn btn-primary" ng-click="Role.pick(10)">10+1抽</button>
+                                            </div>
+                                        </div>
+                                        <div ng-show="Role.nowShow=='10'">
+                                            <div style="width:100%;">
+                                                <div class="inner-role" id="role11">
+
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div ng-show="Role.nowShow=='10'">
-                                        <div style="width:100%;">
-                                            <div class="inner-role" id="role11">
+                                            <div class="inner-role" id="role1">
 
                                             </div>
-                                        </div>
-                                        <div class="inner-role" id="role1">
+                                            <div class="inner-role" id="role2">
 
-                                        </div>
-                                        <div class="inner-role" id="role2">
+                                            </div>
+                                            <div class="inner-role" id="role3">
 
-                                        </div>
-                                        <div class="inner-role" id="role3">
+                                            </div>
+                                            <div class="inner-role" id="role4">
 
-                                        </div>
-                                        <div class="inner-role" id="role4">
+                                            </div>
+                                            <div class="inner-role" id="role5">
 
-                                        </div>
-                                        <div class="inner-role" id="role5">
+                                            </div>
+                                            <div class="inner-role" id="role6">
 
-                                        </div>
-                                        <div class="inner-role" id="role6">
+                                            </div>
+                                            <div class="inner-role" id="role7">
 
-                                        </div>
-                                        <div class="inner-role" id="role7">
+                                            </div>
+                                            <div class="inner-role" id="role8">
 
-                                        </div>
-                                        <div class="inner-role" id="role8">
+                                            </div>
+                                            <div class="inner-role" id="role9">
 
-                                        </div>
-                                        <div class="inner-role" id="role9">
+                                            </div>
+                                            <div class="inner-role" id="role10">
 
-                                        </div>
-                                        <div class="inner-role" id="role10">
-
-                                        </div>
-                                        <div style="width:100%;height:48px;padding:5px;">
-                                            <button class="btn btn-primary" style="width:100%;" ng-show="Role.subFalg" ng-click="Role.pick(10)">繼續抽</button>
+                                            </div>
+                                            <div style="width:100%;height:48px;padding:5px;">
+                                                <button class="btn btn-primary" style="width:100%;" ng-show="Role.subFalg" ng-click="Role.pick(10)">繼續抽</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div ng-if="Role.senceContent.End">
+                                <span style="font-size:46px;">本活動已結束</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="out-Rbox" style="float:right;">
+                    <div class="out-Rbox" style="float:right;" ng-if="!Role.senceContent.End">
                         <div class="k-card">
                             <div class="k-body">
                                 <div style="height:38px;line-height:38px;vertical-align:middle;text-align:center;">{{Role.Info.Name}}</div>
@@ -234,9 +239,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div ng-if="(Role.senceContent.EndDate|date:'yyyyMMddHHmm')<(Role.today|date:'yyyyMMddHHmm')">
-                    <span style="font-size:46px;">本活動已結束</span>
                 </div>
             </div>
             <div class="demoBodyLeft">

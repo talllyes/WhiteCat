@@ -306,7 +306,6 @@
                 Role.titleF = true;
                 Role.sceneRole = response.data.role;
                 Role.senceContent = response.data.scene;
-
                 $("#change1").loadchange("off");
                 angular.forEach(Role.sceneRole, function (value, key) {
                     value.Num = 0;

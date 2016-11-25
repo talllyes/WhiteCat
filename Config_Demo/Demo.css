@@ -1,6 +1,9 @@
 ﻿body {
   overflow-y: scroll; }
 
+.k-hand {
+  cursor: pointer; }
+
 .demoBodyRight {
   float: left;
   width: 900px; }
@@ -104,6 +107,9 @@
     border-bottom: 1px solid #FF8C8C; }
   .k-card .k-body {
     padding: 10px; }
+  .k-card .k-footer {
+    border-top: 1px solid #FF8C8C;
+    padding: 10px; }
 
 .k-card2 {
   border: 1px solid #BFBFBF;
@@ -137,35 +143,4 @@
 
 .k-select:hover {
   font-weight: bold; }
-
-.k-table {
-  padding: 0;
-  margin: 0; }
-  .k-table tr {
-    padding: 0;
-    margin: 0; }
-  .k-table td {
-    padding: 0;
-    margin: 0; }
-  .k-table div {
-    border: 1px solid #FFDEDE;
-    border-left: 0;
-    padding: 10px;
-    cursor: pointer; }
-  .k-table div:hover {
-    border-top: 3px solid #940000;
-    padding-top: 8px; }
-  .k-table .left {
-    border-left: 1px solid #FFDEDE; }
-  .k-table .spanon {
-    border: 0;
-    border-bottom: 1px solid #FFDEDE;
-    height: 46px; }
-  .k-table .spanon:hover {
-    border-top: 0;
-    padding-top: 0; }
-  .k-table .active {
-    border-bottom: 0;
-    border-top: 3px solid #0000DB;
-    padding-top: 8px; }
 

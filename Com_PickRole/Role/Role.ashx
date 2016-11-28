@@ -329,7 +329,7 @@ public class Role : IHttpHandler, IRequiresSessionState
                 }
 
                 var tranks = (from a in ranks
-                              orderby (a.Star4 + a.Star3 + a.Star2) descending, a.time
+                              orderby (a.Star4 + a.Star3 + a.Star2), a.time
                               select a).Take(3);
                 string stringJson = JsonConvert.SerializeObject(tranks);
                 rank.RankContent = stringJson;
@@ -368,7 +368,7 @@ public class Role : IHttpHandler, IRequiresSessionState
                 }
 
                 var tranks = (from a in ranksx2
-                              orderby (a.Star4 + a.Star3 + a.Star2), a.time
+                              orderby (a.Star4 + a.Star3 + a.Star2) descending, a.time
                               select a).Take(3);
                 string stringJson = JsonConvert.SerializeObject(tranks);
                 rankx2.RankContent = stringJson;

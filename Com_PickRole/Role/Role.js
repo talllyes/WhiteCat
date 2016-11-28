@@ -165,12 +165,12 @@
                 display: "",
                 top: "-10px",
                 left: "-10px",
-                width: "110px",
-                height: "110px"
+                width: "85px",
+                height: "85px"
             }).animate({
                 opacity: 1,
-                width: "100px",
-                height: "100px",
+                width: "75px",
+                height: "75px",
                 top: 0,
                 left: 0
             }, 300, function () {
@@ -293,6 +293,7 @@
                 Role.Info.Name = localStorage.getItem("pickname");
             }
         }
+        $("#change1").loadchange("on", 1000);
         Role.getSceneRole();
     };
 

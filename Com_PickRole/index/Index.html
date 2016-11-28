@@ -19,12 +19,54 @@
     <div class="zone">
         <div class="row">
             <div id="change1" data-loadstyle="loading6">
-                <div class="col-xs-6 k-hand" ng-repeat="sence in Index.sence" style="margin-bottom:20px;" ng-click="Index.chooseSence(sence.SceneID)">
+                <div class="col-xs-12">
+                    <div style="font-size:33px;font-weight:bold;color:#373a3c;border-bottom:1px solid #F8BBD0;margin-bottom:15px;">
+                        進行中
+                    </div>
+                </div>
+                <div class="col-xs-6 k-hand"
+                     ng-repeat="sence in Index.sence" style="margin-bottom:20px;" ng-if="!sence.End && !sence.Start" ng-click="Index.chooseSence(sence.SceneID)">
                     <div class="k-card">
                         <div class="k-head" style="text-align:center;">
                             {{sence.Name}}
-                            <span ng-if="sence.End">(已結束)</span>
-                            <span ng-if="sence.Start">(尚未開始)</span>
+                        </div>
+                        <div class="k-body" style="padding:0;">
+                            <img style="width:100%;" ng-src="../Img/sence/{{sence.Src}}" />
+                        </div>
+                        <div class="k-footer" style="text-align:center;">
+                            {{sence.StartDate|date:'yyyy-MM-dd HH:mm'}} ~ {{sence.EndDate|date:'yyyy-MM-dd HH:mm'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-if="Index.start">
+                    <div style="font-size:33px;font-weight:bold;color:#373a3c;border-bottom:1px solid #F8BBD0;margin-bottom:15px;">
+                        預定上架
+                    </div>
+                </div>
+                <div class="col-xs-6"
+                     ng-repeat="sence in Index.sence" style="margin-bottom:20px;" ng-if="sence.Start">
+                    <div class="k-card">
+                        <div class="k-head" style="text-align:center;">
+                            {{sence.Name}}
+                        </div>
+                        <div class="k-body" style="padding:0;">
+                            <img style="width:100%;" ng-src="../Img/sence/{{sence.Src}}" />
+                        </div>
+                        <div class="k-footer" style="text-align:center;">
+                            {{sence.StartDate|date:'yyyy-MM-dd HH:mm'}} ~ {{sence.EndDate|date:'yyyy-MM-dd HH:mm'}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div style="font-size:33px;font-weight:bold;color:#373a3c;border-bottom:1px solid #F8BBD0;margin-bottom:15px;">
+                        已結束
+                    </div>
+                </div>
+                <div class="col-xs-6 k-hand"
+                     ng-repeat="sence in Index.sence" style="margin-bottom:20px;" ng-if="sence.End" ng-click="Index.chooseSence(sence.SceneID)">
+                    <div class="k-card">
+                        <div class="k-head" style="text-align:center;">
+                            {{sence.Name}}
                         </div>
                         <div class="k-body" style="padding:0;">
                             <img style="width:100%;" ng-src="../Img/sence/{{sence.Src}}" />

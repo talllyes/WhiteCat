@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>台版白貓Project</title>
     <meta charset="utf-8" />
 
     <script src="Lib/other/jquery-3.1.1.js"></script>
@@ -22,20 +22,23 @@
     <script src="Config_Demo/Dome.js"></script>
     <link href="Config_Demo/Demo.css" rel="stylesheet" />
 
+    <script src="PickRole.js"></script>
 </head>
-<body>
-    <div class="k-navbar">
+<body ng-controller="PickRole as PickRole" ng-app="PickRoleApp">
+    <div class="k-navbar" style="box-shadow: 0 1px 1px 1px #787878;position:fixed;z-index:999;width:100%;opacity:0.95;">
         <div class="zone">
             <ul>
                 <li>
-                    <a class="active" href="index.html">白貓</a>
+                    <a style="font-weight:bold;color:#C51162;">白貓</a>
                 </li>
-                <li>
-                    <a href="PickRole">模擬抽角器</a>
+                <li class="nav-item dropdown">
+                    <a href="#/Index" class="nav-link" style="font-weight:bold;color:black;">抽角模擬器</a>
                 </li>
             </ul>
         </div>
-    </div>    
+    </div>
+    <div style="height:55px;background-color:#FFE8E8;"></div>
+    <ng-view></ng-view>
     <div style="clear:both;height:50px;"></div>
 </body>
 </html>

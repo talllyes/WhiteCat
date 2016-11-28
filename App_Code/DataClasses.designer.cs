@@ -41,6 +41,9 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertScene(Scene instance);
   partial void UpdateScene(Scene instance);
   partial void DeleteScene(Scene instance);
+  partial void InsertRank2(Rank2 instance);
+  partial void UpdateRank2(Rank2 instance);
+  partial void DeleteRank2(Rank2 instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -102,6 +105,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Scene>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Rank2> Rank2
+	{
+		get
+		{
+			return this.GetTable<Rank2>();
 		}
 	}
 }
@@ -548,6 +559,8 @@ public partial class Scene : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Src;
 	
+	private System.Nullable<int> _Chance;
+	
     #region 擴充性方法定義
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -562,6 +575,8 @@ public partial class Scene : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnEndDateChanged();
     partial void OnSrcChanging(string value);
     partial void OnSrcChanged();
+    partial void OnChanceChanging(System.Nullable<int> value);
+    partial void OnChanceChanged();
     #endregion
 	
 	public Scene()
@@ -665,6 +680,160 @@ public partial class Scene : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Src = value;
 				this.SendPropertyChanged("Src");
 				this.OnSrcChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chance", DbType="Int")]
+	public System.Nullable<int> Chance
+	{
+		get
+		{
+			return this._Chance;
+		}
+		set
+		{
+			if ((this._Chance != value))
+			{
+				this.OnChanceChanging(value);
+				this.SendPropertyChanging();
+				this._Chance = value;
+				this.SendPropertyChanged("Chance");
+				this.OnChanceChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rank2")]
+public partial class Rank2 : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _RankID;
+	
+	private System.Nullable<int> _SceneID;
+	
+	private string _Type;
+	
+	private string _RankContent;
+	
+    #region 擴充性方法定義
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRankIDChanging(int value);
+    partial void OnRankIDChanged();
+    partial void OnSceneIDChanging(System.Nullable<int> value);
+    partial void OnSceneIDChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnRankContentChanging(string value);
+    partial void OnRankContentChanged();
+    #endregion
+	
+	public Rank2()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RankID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int RankID
+	{
+		get
+		{
+			return this._RankID;
+		}
+		set
+		{
+			if ((this._RankID != value))
+			{
+				this.OnRankIDChanging(value);
+				this.SendPropertyChanging();
+				this._RankID = value;
+				this.SendPropertyChanged("RankID");
+				this.OnRankIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SceneID", DbType="Int")]
+	public System.Nullable<int> SceneID
+	{
+		get
+		{
+			return this._SceneID;
+		}
+		set
+		{
+			if ((this._SceneID != value))
+			{
+				this.OnSceneIDChanging(value);
+				this.SendPropertyChanging();
+				this._SceneID = value;
+				this.SendPropertyChanged("SceneID");
+				this.OnSceneIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(2)")]
+	public string Type
+	{
+		get
+		{
+			return this._Type;
+		}
+		set
+		{
+			if ((this._Type != value))
+			{
+				this.OnTypeChanging(value);
+				this.SendPropertyChanging();
+				this._Type = value;
+				this.SendPropertyChanged("Type");
+				this.OnTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RankContent", DbType="NVarChar(600)")]
+	public string RankContent
+	{
+		get
+		{
+			return this._RankContent;
+		}
+		set
+		{
+			if ((this._RankContent != value))
+			{
+				this.OnRankContentChanging(value);
+				this.SendPropertyChanging();
+				this._RankContent = value;
+				this.SendPropertyChanged("RankContent");
+				this.OnRankContentChanged();
 			}
 		}
 	}

@@ -1,11 +1,11 @@
 ﻿app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
      .when('/Index', {
-         templateUrl: 'Index/Index.html',
+         templateUrl: 'PickRole/Index',
          controller: 'Index as Index'
      })
      .when('/Role/:type', {
-         templateUrl: 'Role/Role.html',
+         templateUrl: 'PickRole/Role',
          controller: 'Role as Role'
      })
     .otherwise({

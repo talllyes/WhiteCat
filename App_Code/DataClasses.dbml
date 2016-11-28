@@ -32,6 +32,15 @@
       <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Src" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Chance" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rank2" Member="Rank2">
+    <Type Name="Rank2">
+      <Column Name="RankID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SceneID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="RankContent" Type="System.String" DbType="NVarChar(600)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

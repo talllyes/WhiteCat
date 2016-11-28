@@ -5,6 +5,11 @@
     Role.choose = "pick";
     Role.pickTime = 0;
     Role.rank = [];
+    Role.chance = {
+        n: 0,
+        m: 0,
+        o: 0
+    }
     Role.star = {
         star2: 0,
         star3: 0,
@@ -21,12 +26,19 @@
     Role.restBtn = false;
     Role.senceContent = "";
     $("#change1").loadchange("on", 1000);
+    if (typeof (Storage) !== "undefined") {
+        if (localStorage.getItem("pickname") != null) {
+            Role.Info.Name = localStorage.getItem("pickname");
+        }
+    }
+
+
     Role.getSceneNum = function () {
         var temp = {};
         temp.SceneID = $routeParams.type;
         $http({
             method: 'POST',
-            url: '../WebAPI/Role.ashx?type=sceneNum',
+            url: 'API/PickRole/Role/sceneNum',
             data: temp
         }).then(function successCallback(response) {
             if (response.data != "無效的指令") {
@@ -37,12 +49,16 @@
         }, function errorCallback(response) {
             alert("連線失敗，免費空間不穩定請重整或稍後再試");
         });
-    }
+    };
+
     Role.getSceneNum();
 
     //抽角按紐
     Role.pick = function (type) {
         if (Role.subFalg) {
+            if (typeof (Storage) !== "undefined") {
+                localStorage.setItem("pickname", Role.Info.Name);
+            }
             Role.subFalg = false;
             Role.restBtn = true;
             if (Role.Info.Name == "") {
@@ -62,23 +78,25 @@
                 randStar(1);
             }
         }
-    }
+    };
+
     function randStar(id) {
         if (id < 12) {
             randStarGo(id);
             setTimeout(function () { randStar(id + 1); }, 50);
         }
     }
+
     function randStarGo(id) {
-        var maxNum = 100
+        var maxNum = 1000;
         var minNum = 1;
         var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
         var newImg;
-        if (n > 0 && n < 48) {
+        if (n > 0 && n < Role.chance.m) {
             var src = "../../Img/roleW/1.png";
             newImg = $("<img src='" + src + "' data-star='2' />");
             $("#role" + id).append(newImg);
-        } else if (n > 47 && n < 93) {
+        } else if (n > Role.chance.n && n < Role.chance.o) {
             var src = "../../Img/roleG/1.png";
             newImg = $("<img src='" + src + "' data-star='3' />");
             $("#role" + id).append(newImg);
@@ -116,7 +134,7 @@
                 if (index < 4) {
                     src = "../../Img/roleW/" + (index + 1) + ".png"
                 } else {
-                    src = "../../Img/roleW/5.png"
+                    src = "../../Img/roleW/5.png";
                     Role.role.push("s2");
                     Role.star.star2 = Role.star.star2 + 1;
                 }
@@ -125,7 +143,7 @@
                 if (index < 4) {
                     src = "../../Img/roleG/" + (index + 1) + ".png"
                 } else {
-                    src = "../../Img/roleG/5.png"
+                    src = "../../Img/roleG/5.png";
                     Role.role.push("s3");
                     Role.star.star3 = Role.star.star3 + 1;
                 }
@@ -145,10 +163,10 @@
             newImg.css({
                 opacity: 0,
                 display: "",
-                top: "-200px",
-                left: "-200px",
-                width: "400px",
-                height: "400px"
+                top: "-10px",
+                left: "-10px",
+                width: "110px",
+                height: "110px"
             }).animate({
                 opacity: 1,
                 width: "100px",
@@ -170,7 +188,7 @@
                 top: 0,
                 left: 0
             }, 100);
-            setTimeout(function () { randRoleGo(id, index + 1); }, 200);
+            setTimeout(function () { randRoleGo(id, index + 1); }, 350);
         } else {
             if (id == 11) {
                 Role.subFalg = true;
@@ -193,11 +211,10 @@
         Role.role = [];
         $http({
             method: 'POST',
-            url: '../WebAPI/Role.ashx?type=updateRoleNum',
+            url: 'API/PickRole/Role/updateRoleNum',
             data: temp
         }).then(function successCallback(response) {
             Role.getSceneNum();
-            console.log(response.data)
         }, function errorCallback(response) {
         });
         var num = true;
@@ -219,7 +236,7 @@
         temp.star = Role.star;
         $http({
             method: 'POST',
-            url: '../WebAPI/Role.ashx?type=Clear',
+            url: 'API/PickRole/Role/clear',
             data: temp
         }).then(function successCallback(response) {
 
@@ -244,13 +261,13 @@
         Role.choose = "rank";
         $http({
             method: 'POST',
-            url: '../WebAPI/Role.ashx?type=GetRank',
+            url: 'API/PickRole/Role/getRank',
             data: temp
         }).then(function successCallback(response) {
             Role.rank = response.data;
         }, function errorCallback(response) {
         });
-    }
+    };
 
     Role.resetPick = function () {
         var id = Role.Info.SceneID;
@@ -271,8 +288,14 @@
         };
         Role.sceneRole = [];            //該場景角色物件
         Role.role = [];
+        if (typeof (Storage) !== "undefined") {
+            if (localStorage.getItem("pickname") != null) {
+                Role.Info.Name = localStorage.getItem("pickname");
+            }
+        }
         Role.getSceneRole();
-    }
+    };
+
     Role.resetPick2 = function () {
         Role.subFalg = false;            //按鈕顯示
         Role.nowShow = 'input';
@@ -291,7 +314,12 @@
         };
         Role.sceneRole = [];            //該場景角色物件
         Role.role = [];
-    }
+        if (typeof (Storage) !== "undefined") {
+            if (localStorage.getItem("pickname") != null) {
+                Role.Info.Name = localStorage.getItem("pickname");
+            }
+        }
+    };
 
     Role.titleF = false;
     //取得該場景角色
@@ -302,25 +330,33 @@
         temp.SceneID = $routeParams.type;
         $http({
             method: 'POST',
-            url: '../WebAPI/Role.ashx?type=SceneRole',
+            url: 'API/PickRole/Role/sceneRole',
             data: temp
         }).then(function successCallback(response) {
-            if (response.data != "無效的指令") {
+            if (response.data == "沒有場景") {
+                alert("沒有這一個池唷");
+            }
+            else if (response.data != "無效的指令") {
                 Role.titleF = true;
                 Role.sceneRole = response.data.role;
                 Role.senceContent = response.data.scene;
+
+                Role.chance.n = ((1000 - (Role.senceContent.Chance * 10)) / 2) + 20;
+                Role.chance.m = Role.chance.n + 1;
+                Role.chance.o = (1000 - (Role.senceContent.Chance * 10)) + 10;
                 $("#change1").loadchange("off");
                 angular.forEach(Role.sceneRole, function (value, key) {
                     value.Num = 0;
                 });
                 Role.subFalg = true;
-            } else {
+            }
+            else {
                 alert("連線失敗，免費空間不穩定請重整或稍後再試。");
             }
         }, function errorCallback(response) {
             alert("連線失敗，免費空間不穩定請重整或稍後再試。");
         });
-    }
+    };
     Role.getSceneRole();
 });
 

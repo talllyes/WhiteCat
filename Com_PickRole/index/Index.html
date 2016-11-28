@@ -1,4 +1,4 @@
-﻿<div style="height:auto;position:relative;background-color:#FFE8E8;">
+﻿<div style="height:auto;position:relative;background-color:#FFE8E8;border-bottom:1px solid #FCE4EC;">
     <div style="position:absolute;width:100%;height:100%;background-color:white;opacity:0.2;"></div>
     <div class="zone">
         <div style="width:1220px;height:220px;margin:auto;padding-top:20px;">
@@ -24,6 +24,7 @@
                         <div class="k-head" style="text-align:center;">
                             {{sence.Name}}
                             <span ng-if="sence.End">(已結束)</span>
+                            <span ng-if="sence.Start">(尚未開始)</span>
                         </div>
                         <div class="k-body" style="padding:0;">
                             <img style="width:100%;" ng-src="../Img/sence/{{sence.Src}}" />

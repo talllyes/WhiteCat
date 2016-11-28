@@ -1,0 +1,401 @@
+﻿<div style="height:auto;position:relative;background-color:#FFE8E8;border-bottom:1px solid #FCE4EC;">
+    <div style="position:absolute;width:100%;height:100%;background-color:white;opacity:0.2;"></div>
+    <div class="zone">
+        <div style="width:1220px;height:220px;margin:auto;padding-top:20px;">
+            <div ng-show="Role.titleF">
+                <div class="card" style="display:inline-block">
+                    <img style="height:180px;" ng-src="../Img/Sence/{{Role.senceContent.Src}}" class="rounded">
+                </div>
+                <div style="display:inline-block;vertical-align:top;margin-left:30px;">
+                    <span style="font-size:60px;font-weight:bold;" ng-bind-html="Role.senceContent.Name"></span>
+                    <br />
+                    <span style="font-size:20px;" ng-bind-html="Role.senceContent.StartDate|date:'yyyy-MM-dd HH:mm'+' ～ '"></span>
+                    <span style="font-size:20px;" ng-bind-html="Role.senceContent.EndDate|date:'yyyy-MM-dd HH:mm'"></span>
+                    <br />
+                    <span style="font-size:20px;" ng-bind-html="'本池四星角設定機率：'+Role.senceContent.Chance+'％'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="k-body">
+    <div class="zone">
+        <div id="change1" data-loadstyle="loading6">
+            <div class="demoBodyRight">
+                <div>
+                    <div class="out-box" style="width:550px;text-align:center;">
+                        <div style="margin-bottom:20px;">
+                            <table class="k-table" data-tabs="demo1">
+                                <tbody>
+                                    <tr>
+                                        <td class="div-no-first">
+                                            <div></div>
+                                        </td>
+                                        <td style="width:100px;" class="active">
+                                            <div class="left" ng-click="Role.choose = 'pick'"
+                                                 ng-class="{active:Role.choose == 'pick'}">抽角</div>
+                                        </td>
+                                        <td style="width:100px;">
+                                            <div ng-click="Role.getRank()"
+                                                 ng-class="{active:Role.choose == 'rank'}">排行榜</div>
+                                        </td>
+                                        <td class="div-no-last">
+                                            <div></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div ng-show="Role.choose == 'rank'">
+                            <div class="k-card">
+                                <div class="k-head" style="text-align:center;">
+                                    歐洲人國王(前110抽) - TOP3
+                                </div>
+                                <div class="k-body" style="text-align:left;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:200px;">
+                                                    姓名
+                                                </th>
+                                                <th>
+                                                    四星角
+                                                </th>
+                                                <th>
+                                                    三星角
+                                                </th>
+                                                <th>
+                                                    二星角
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="type1 in Role.rank.type1">
+                                                <td>
+                                                    {{type1.Name}}
+                                                </td>
+                                                <td>
+                                                    {{type1.Star4}}({{type1.Star4/(type1.Star2+type1.Star3+type1.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type1.Star3}}({{type1.Star3/(type1.Star2+type1.Star3+type1.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type1.Star2}}({{type1.Star2/(type1.Star2+type1.Star3+type1.Star4)*100|number:'2'}}％)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="k-card">
+                                <div class="k-head" style="text-align:center;">
+                                    非洲人酋長(前110抽) - TOP3
+                                </div>
+                                <div class="k-body" style="text-align:left;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:200px;">
+                                                    姓名
+                                                </th>
+                                                <th>
+                                                    四星角
+                                                </th>
+                                                <th>
+                                                    三星角
+                                                </th>
+                                                <th>
+                                                    二星角
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="type2 in Role.rank.type2">
+                                                <td>
+                                                    {{type2.Name}}
+                                                </td>
+                                                <td>
+                                                    {{type2.Star4}}({{type2.Star4/(type2.Star2+type2.Star3+type2.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type2.Star3}}({{type2.Star3/(type2.Star2+type2.Star3+type2.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type2.Star2}}({{type2.Star2/(type2.Star2+type2.Star3+type2.Star4)*100|number:'2'}}％)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="k-card">
+                                <div class="k-head" style="text-align:center;">
+                                    歐洲直達快速航線 - TOP3
+                                </div>
+                                <div class="k-body" style="text-align:left;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:150px;">
+                                                    姓名
+                                                </th>
+                                                <th>
+                                                    總計
+                                                </th>
+                                                <th>
+                                                    四星角
+                                                </th>
+                                                <th>
+                                                    三星角
+                                                </th>
+                                                <th>
+                                                    二星角
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="type3 in Role.rank.type3">
+                                                <td>
+                                                    {{type3.Name}}
+                                                </td>
+                                                <td>
+                                                    {{type3.Star2+type3.Star3+type3.Star4}}抽
+                                                    <br />
+                                                    ({{((type3.Star2+type3.Star3+type3.Star4)/11*10)*25}}寶石)
+                                                </td>
+                                                <td>
+                                                    {{type3.Star4}}<br />
+                                                    ({{type3.Star4/(type3.Star2+type3.Star3+type3.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type3.Star3}}<br />
+                                                    ({{type3.Star3/(type3.Star2+type3.Star3+type3.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type3.Star2}}<br />
+                                                    ({{type3.Star2/(type3.Star2+type3.Star3+type3.Star4)*100|number:'2'}}％)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="k-card">
+                                <div class="k-head" style="text-align:center;">
+                                    非洲木竿竹筏入境 - TOP3
+                                </div>
+                                <div class="k-body" style="text-align:left;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:150px;">
+                                                    姓名
+                                                </th>
+                                                <th>
+                                                    總計
+                                                </th>
+                                                <th>
+                                                    四星角
+                                                </th>
+                                                <th>
+                                                    三星角
+                                                </th>
+                                                <th>
+                                                    二星角
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="type4 in Role.rank.type4">
+                                                <td>
+                                                    {{type4.Name}}
+                                                </td>
+                                                <td>
+                                                    {{type4.Star2+type4.Star3+type4.Star4}}抽
+                                                    <br />
+                                                    ({{((type4.Star2+type4.Star3+type4.Star4)/11*10)*25}}寶石)
+                                                </td>
+                                                <td>
+                                                    {{type4.Star4}}
+                                                    <br />
+                                                    ({{type4.Star4/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type4.Star3}}
+                                                    <br />
+                                                    ({{type4.Star3/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
+                                                </td>
+                                                <td>
+                                                    {{type4.Star2}}
+                                                    <br />
+                                                    ({{type4.Star2/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="Role.choose == 'pick'">
+                            <div ng-if="!Role.senceContent.End && !Role.senceContent.Start">
+                                <div class="k-card3" style="width:400px;">
+                                    <div class="k-body">
+                                        <div ng-show="Role.nowShow=='input'">
+                                            <div ng-if="Role.subFalg">
+                                                <div class="k-card">
+                                                    <div class="k-head">
+                                                        請輸入姓名
+                                                    </div>
+                                                    <div class="k-body">
+                                                        <input type="text" style="width:100%" maxlength="30" ng-model="Role.Info.Name" />
+                                                    </div>
+                                                    <div style="border-top:1px solid #FFDEDE;padding:5px;">
+                                                        <button style="width:100%;" class="btn btn-primary" ng-disabled="Role.Info.Name==''" ng-click="Role.pick(10)">
+                                                            10+1抽<span ng-show="Role.Info.Name==''">(請先輸入姓名)</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="Role.nowShow=='10'">
+                                            <div style="width:100%;">
+                                                <div class="inner-role" id="role11">
+
+                                                </div>
+                                            </div>
+                                            <div class="inner-role" id="role1">
+
+                                            </div>
+                                            <div class="inner-role" id="role2">
+
+                                            </div>
+                                            <div class="inner-role" id="role3">
+
+                                            </div>
+                                            <div class="inner-role" id="role4">
+
+                                            </div>
+                                            <div class="inner-role" id="role5">
+
+                                            </div>
+                                            <div class="inner-role" id="role6">
+
+                                            </div>
+                                            <div class="inner-role" id="role7">
+
+                                            </div>
+                                            <div class="inner-role" id="role8">
+
+                                            </div>
+                                            <div class="inner-role" id="role9">
+
+                                            </div>
+                                            <div class="inner-role" id="role10">
+
+                                            </div>
+                                            <div style="width:100%;height:48px;padding:5px;">
+                                                <button class="btn btn-primary" style="width:100%;" ng-show="Role.subFalg" ng-click="Role.pick(10)">繼續抽</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="Role.senceContent.End">
+                                <span style="font-size:46px;">本活動已結束</span>
+                            </div>
+                            <div ng-if="Role.senceContent.Start">
+                                <span style="font-size:46px;">本活動尚未開始</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="out-Rbox" style="float:right;" ng-if="!Role.senceContent.End">
+                        <div class="k-card">
+                            <div class="k-body">
+                                <div style="min-height:38px;line-height:38px;vertical-align:middle;text-align:center;">{{Role.Info.Name}}</div>
+                            </div>
+                            <div style="border-top:1px solid #FFDEDE;padding:5px;">
+                                <button class="btn btn-primary" style="width:100%;" ng-disabled="Role.restBtn" ng-click="Role.resetPick()">重置</button>
+                            </div>
+                        </div>
+                        <div style="margin:15px;"></div>
+                        <div class="k-card">
+                            <div class="k-head">
+                                本次抽角統計
+                            </div>
+                            <div class="k-body">
+                                <div>
+                                    <span>　</span>總計：<span ng-bind-html="Role.star.star2+Role.star.star3+Role.star.star4"></span>抽(<span ng-bind-html="(((Role.star.star2+Role.star.star3+Role.star.star4)/11)*250)|number:'0'"></span>寶石)
+                                </div>
+                                <div>二星角：<span ng-bind-html="Role.star.star2"></span>(<span ng-bind-html="(Role.star.star2/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
+                                <div>三星角：<span ng-bind-html="Role.star.star3"></span>(<span ng-bind-html="(Role.star.star3/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
+                                <div>四星角：<span ng-bind-html="Role.star.star4"></span>(<span ng-bind-html="(Role.star.star4/(Role.star.star2+Role.star.star3+Role.star.star4))*100|number:'2'"></span>%)</div>
+                            </div>
+                        </div>
+                        <div style="margin:15px;"></div>
+                        <div class="k-card">
+                            <div class="k-head">
+                                已抽到
+                            </div>
+                            <div class="k-body">
+                                <div ng-repeat="sceneRole in Role.sceneRole |orderBy:'Num':true" style="width:90px;display: inline-block;" ng-if="sceneRole.Num!=0">
+                                    <img style="height:50px;width:50px;" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
+                                    x{{sceneRole.Num}}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin:15px;"></div>
+                        <div class="k-card">
+                            <div class="k-head">
+                                未抽到
+                            </div>
+                            <div class="k-body" style="text-align:center;">
+                                <div ng-repeat="sceneRole in Role.sceneRole" style="width:60px;display: inline-block;" ng-if="sceneRole.Num==0">
+                                    <img style="height:50px;width:50px;opacity:0.5" ng-src="../../Img/role4/{{sceneRole.RoleID}}.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="demoBodyLeft">
+                <div class="k-card">
+                    <div class="k-head">
+                        累積模擬抽角樣本數
+                    </div><div class="k-body">
+                        <div>
+                            <span>　</span>總計：<span ng-bind-html="Role.starNum.star.starC"></span>抽
+                        </div>
+                        <div>
+                            二星角：<span ng-bind-html="Role.starNum.star.star2"></span>次(<span ng-bind-html="(Role.starNum.star.star2/Role.starNum.star.starC*100)|number:'2'"></span>％)
+                        </div>
+                        <div>
+                            三星角：<span ng-bind-html="Role.starNum.star.star3"></span>次(<span ng-bind-html="(Role.starNum.star.star3/Role.starNum.star.starC*100)|number:'2'"></span>％)
+                        </div>
+                        <div>
+                            四星角：<span ng-bind-html="Role.starNum.star.star4"></span>次(<span ng-bind-html="(Role.starNum.star.star4/Role.starNum.star.starC*100)|number:'2'"></span>％)
+                        </div>
+                    </div>
+                </div>
+                <div style="height:10px;"></div>
+                <div style="width:100%;position:relative;">
+                    <div ng-repeat="star4 in Role.starNum.star4" class="col-xs-6" style="padding:1px;">
+                        <div class="k-card2">
+                            <div class="k-body" style="text-align:center;">
+                                <img style="width:50px;width:50px;" ng-src="../Img/role4/{{star4.RoleID}}.png" />
+                                <span ng-bind-html="(star4.Count*100/Role.starNum.starC2)|number:'2'"></span>％
+                            </div>
+                            <div class="k-line"></div>
+                            <div class="k-font" style="text-align:center;">
+                                <span ng-bind-html="star4.Name"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

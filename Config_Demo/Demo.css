@@ -114,13 +114,11 @@
 .k-card2 {
   border: 1px solid #BFBFBF;
   display: inline-block;
-  width: 117px;
   padding: 0;
-  margin: 3px; }
+  margin: 0;
+  width: 100%; }
   .k-card2 .k-body {
     padding: 3px; }
-  .k-card2 .k-font {
-    padding-left: 10px; }
   .k-card2 .k-line {
     border-bottom: 1px solid #BFBFBF;
     margin-top: 1px;

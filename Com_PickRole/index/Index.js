@@ -6,7 +6,7 @@
     function getScene() {
         $http({
             method: 'POST',
-            url: '../WebAPI/Index.ashx?type=getSence'
+            url: 'API/PickRole/Index/getSence'
         }).then(function successCallback(response) {
             if (response.data != "無效的指令") {
                 Index.sence = response.data;
@@ -18,6 +18,7 @@
             alert("連線失敗，免費空間不穩定請重整或稍後再試");
         });
     }
+
     getScene();
 
     Index.chooseSence = function (id) {

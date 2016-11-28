@@ -344,7 +344,7 @@
 
                 Role.chance.n = ((1000 - (Role.senceContent.Chance * 10)) / 2) + 20;
                 Role.chance.m = Role.chance.n + 1;
-                Role.chance.o = (1000 - (Role.senceContent.Chance * 10)) + 10;
+                Role.chance.o = (1000 - (Role.senceContent.Chance * 10)) + 1;
                 $("#change1").loadchange("off");
                 angular.forEach(Role.sceneRole, function (value, key) {
                     value.Num = 0;

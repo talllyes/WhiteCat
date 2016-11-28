@@ -55,33 +55,21 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th style="width:200px;">
+                                                <th>
                                                     姓名
                                                 </th>
-                                                <th>
+                                                <th style="width:120px;">
                                                     四星角
-                                                </th>
-                                                <th>
-                                                    三星角
-                                                </th>
-                                                <th>
-                                                    二星角
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="type1 in Role.rank.type1">
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type1.Name}}
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type1.Star4}}({{type1.Star4/(type1.Star2+type1.Star3+type1.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type1.Star3}}({{type1.Star3/(type1.Star2+type1.Star3+type1.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type1.Star2}}({{type1.Star2/(type1.Star2+type1.Star3+type1.Star4)*100|number:'2'}}％)
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -97,33 +85,21 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th style="width:200px;">
+                                                <th>
                                                     姓名
                                                 </th>
-                                                <th>
+                                                <th style="width:120px;">
                                                     四星角
-                                                </th>
-                                                <th>
-                                                    三星角
-                                                </th>
-                                                <th>
-                                                    二星角
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="type2 in Role.rank.type2">
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type2.Name}}
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type2.Star4}}({{type2.Star4/(type2.Star2+type2.Star3+type2.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type2.Star3}}({{type2.Star3/(type2.Star2+type2.Star3+type2.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type2.Star2}}({{type2.Star2/(type2.Star2+type2.Star3+type2.Star4)*100|number:'2'}}％)
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -139,44 +115,30 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th style="width:150px;">
+                                                <th>
                                                     姓名
                                                 </th>
                                                 <th style="width:120px;">
                                                     總計
                                                 </th>
-                                                <th>
+                                                <th style="width:120px;">
                                                     四星角
-                                                </th>
-                                                <th>
-                                                    三星角
-                                                </th>
-                                                <th>
-                                                    二星角
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="type3 in Role.rank.type3">
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type3.Name}}
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type3.Star2+type3.Star3+type3.Star4}}抽
                                                     <br />
                                                     ({{((type3.Star2+type3.Star3+type3.Star4)/11*10)*25}}寶石)
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type3.Star4}}<br />
                                                     ({{type3.Star4/(type3.Star2+type3.Star3+type3.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type3.Star3}}<br />
-                                                    ({{type3.Star3/(type3.Star2+type3.Star3+type3.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type3.Star2}}<br />
-                                                    ({{type3.Star2/(type3.Star2+type3.Star3+type3.Star4)*100|number:'2'}}％)
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -192,47 +154,31 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th style="width:150px;">
+                                                <th>
                                                     姓名
                                                 </th>
                                                 <th style="width:120px;">
                                                     總計
                                                 </th>
-                                                <th>
+                                                <th style="width:120px;">
                                                     四星角
-                                                </th>
-                                                <th>
-                                                    三星角
-                                                </th>
-                                                <th>
-                                                    二星角
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="type4 in Role.rank.type4">
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type4.Name}}
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type4.Star2+type4.Star3+type4.Star4}}抽
                                                     <br />
                                                     ({{((type4.Star2+type4.Star3+type4.Star4)/11*10)*25}}寶石)
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align:middle;">
                                                     {{type4.Star4}}
                                                     <br />
                                                     ({{type4.Star4/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type4.Star3}}
-                                                    <br />
-                                                    ({{type4.Star3/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
-                                                </td>
-                                                <td>
-                                                    {{type4.Star2}}
-                                                    <br />
-                                                    ({{type4.Star2/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
                                                 </td>
                                             </tr>
                                         </tbody>

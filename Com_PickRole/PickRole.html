@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>台版白貓Project</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <script src="Lib/other/jquery-3.1.1.js"></script>
     <script src="Lib/other/tether.min.js"></script>
@@ -24,9 +26,9 @@
 
     <script src="PickRole.js"></script>
 </head>
-<body ng-controller="PickRole as PickRole" ng-app="PickRoleApp" style="min-width:1220px;">
-    <div class="k-navbar" style="box-shadow: 0 1px 1px 1px #787878;position:fixed;z-index:999;width:100%;opacity:0.95;">
-        <div class="zone">
+<body ng-controller="PickRole as PickRole" ng-app="PickRoleApp">
+    <div class="k-navbars">
+        <div class="container">
             <ul>
                 <li>
                     <a style="font-weight:bold;color:#C51162;">白貓</a>
@@ -38,7 +40,14 @@
         </div>
     </div>
     <div style="height:55px;background-color:#FFE8E8;"></div>
-    <ng-view></ng-view>
-    <div style="clear:both;height:50px;"></div>
+    <div id="fh">
+        <ng-view></ng-view>
+    </div>
+    <div style="clear:both;height:100px;"></div>
+    <div class="k-fat">
+        <div class="container zone">
+            偶爾也是要做一些輕鬆的程式
+        </div>
+    </div>
 </body>
 </html>

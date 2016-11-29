@@ -94,15 +94,15 @@
         var newImg;
         if (n > 0 && n < Role.chance.m) {
             var src = "../../Img/roleW/1.png";
-            newImg = $("<img src='" + src + "' data-star='2' />");
+            newImg = $("<img class='rounded' src='" + src + "' data-star='2' />");
             $("#role" + id).append(newImg);
         } else if (n > Role.chance.n && n < Role.chance.o) {
             var src = "../../Img/roleG/1.png";
-            newImg = $("<img src='" + src + "' data-star='3' />");
+            newImg = $("<img class='rounded' src='" + src + "' data-star='3' />");
             $("#role" + id).append(newImg);
         } else {
             var src = "../../Img/roleG/1.png";
-            newImg = $("<img src='" + src + "' data-star='4' />");
+            newImg = $("<img class='rounded' src='" + src + "' data-star='4' />");
             $("#role" + id).append(newImg);
         }
         newImg.css({
@@ -160,22 +160,8 @@
             }
             var newImg = $("<img src='" + src + "' data-star='" + star + "' />");
             lastDiv.after(newImg);
-            newImg.css({
-                opacity: 0,
-                display: "",
-                top: "-10px",
-                left: "-10px",
-                width: "85px",
-                height: "85px"
-            }).animate({
-                opacity: 1,
-                width: "75px",
-                height: "75px",
-                top: 0,
-                left: 0
-            }, 300, function () {
-                lastDiv.remove();
-            }).animate({
+            lastDiv.remove();
+            newImg.animate({
                 top: "5px",
                 left: "-5px"
             }, 100).animate({

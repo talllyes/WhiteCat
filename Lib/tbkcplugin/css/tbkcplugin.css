@@ -760,7 +760,7 @@
     border: 0;
     border-bottom: 1px solid #FFDEDE;
     border-left: 0 !important;
-    background-color: white;
+    background-color: transparent;
     padding: 11px;
     padding-left: 15px;
     padding-right: 15px;
@@ -784,7 +784,7 @@
       border-right: 0;
       border-top: 0 !important;
       border-left: 0 !important;
-      background-color: white;
+      background-color: transparent;
       padding: 11px;
       padding-left: 15px;
       padding-right: 15px;

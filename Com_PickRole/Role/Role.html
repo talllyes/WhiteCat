@@ -228,45 +228,45 @@
                                     </table>
                                 </div>
                             </div>
-                            <br />
-                            <div class="k-card">
-                                <div class="k-head" style="text-align:center;">
-                                    非洲木竿竹筏入境(抽完全池) - TOP3
-                                </div>
-                                <div class="k-body" style="text-align:left;">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="min-width:60px;">
-                                                        姓名
-                                                    </th>
-                                                    <th style="min-width:120px;">
-                                                        總計
-                                                    </th>
-                                                    <th style="min-width:120px;">
-                                                        四星角
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="type4 in Role.rank.type4">
-                                                    <td style="vertical-align:middle;">
-                                                        {{type4.Name}}
-                                                    </td>
-                                                    <td style="vertical-align:middle;">
-                                                        {{type4.Star2+type4.Star3+type4.Star4}}抽
-                                                        <br />
-                                                        ({{((type4.Star2+type4.Star3+type4.Star4)/11*10)*25}}寶石)
-                                                    </td>
-                                                    <td style="vertical-align:middle;">
-                                                        {{type4.Star4}}<br />
-                                                        ({{type4.Star4/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                        </div>
+                        <br />
+                        <div class="k-card">
+                            <div class="k-head" style="text-align:center;">
+                                非洲木竿竹筏入境(抽完全池) - TOP3
+                            </div>
+                            <div class="k-body" style="text-align:left;">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:60px;">
+                                                    姓名
+                                                </th>
+                                                <th style="min-width:120px;">
+                                                    總計
+                                                </th>
+                                                <th style="min-width:120px;">
+                                                    四星角
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="type4 in Role.rank.type4">
+                                                <td style="vertical-align:middle;">
+                                                    {{type4.Name}}
+                                                </td>
+                                                <td style="vertical-align:middle;">
+                                                    {{type4.Star2+type4.Star3+type4.Star4}}抽
+                                                    <br />
+                                                    ({{((type4.Star2+type4.Star3+type4.Star4)/11*10)*25}}寶石)
+                                                </td>
+                                                <td style="vertical-align:middle;">
+                                                    {{type4.Star4}}<br />
+                                                    ({{type4.Star4/(type4.Star2+type4.Star3+type4.Star4)*100|number:'2'}}％)
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

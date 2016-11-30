@@ -260,6 +260,10 @@
         Role.subFalg = false;            //按鈕顯示
         Role.nowShow = 'input';
         Role.choose = "pick";
+
+       
+        $(".k-table td").removeClass("active");
+        $(".k-table td:first").addClass("active");
         Role.pickTime = 0;
         Role.rank = [];
         Role.star = {

@@ -94,8 +94,11 @@ public class Role : IHttpHandler, IRequiresSessionState
                             select a).SingleOrDefault();
                 if (exst != null)
                 {
-                    ranks.Remove(exst);
-                    ranks.Add(tt);
+                    if (tt.Star4 > exst.Star4)
+                    {
+                        ranks.Remove(exst);
+                        ranks.Add(tt);
+                    }
                 }
                 else
                 {
@@ -133,8 +136,11 @@ public class Role : IHttpHandler, IRequiresSessionState
                             select a).SingleOrDefault();
                 if (exst != null)
                 {
-                    ranksx2.Remove(exst);
-                    ranksx2.Add(tt);
+                    if (tt.Star4 < exst.Star4)
+                    {
+                        ranksx2.Remove(exst);
+                        ranksx2.Add(tt);
+                    }
                 }
                 else
                 {
@@ -320,8 +326,11 @@ public class Role : IHttpHandler, IRequiresSessionState
                             select a).SingleOrDefault();
                 if (exst != null)
                 {
-                    ranks.Remove(exst);
-                    ranks.Add(tt);
+                    if ((tt.Star4 + tt.Star3 + tt.Star2) < (exst.Star4 + exst.Star3 + exst.Star2))
+                    {
+                        ranks.Remove(exst);
+                        ranks.Add(tt);
+                    }
                 }
                 else
                 {
@@ -359,8 +368,12 @@ public class Role : IHttpHandler, IRequiresSessionState
                             select a).SingleOrDefault();
                 if (exst != null)
                 {
-                    ranksx2.Remove(exst);
-                    ranksx2.Add(tt);
+                    if ((tt.Star4 + tt.Star3 + tt.Star2) > (exst.Star4 + exst.Star3 + exst.Star2))
+                    {
+                        ranksx2.Remove(exst);
+                        ranksx2.Add(tt);
+                    }
+
                 }
                 else
                 {

@@ -77,7 +77,7 @@ public class Role : IHttpHandler, IRequiresSessionState
             tt.Star2 = json.star.star2;
             tt.Star3 = json.star.star3;
             tt.Star4 = json.star.star4;
-            tt.time = DateTime.Now;
+            tt.time = DateTime.Now.AddHours(8);
 
 
             var rank = (from a in DB.Rank2
@@ -272,8 +272,8 @@ public class Role : IHttpHandler, IRequiresSessionState
                              a.Src,
                              a.EndDate,
                              a.StartDate,
-                             End = a.EndDate < DateTime.Now,
-                             Start = a.StartDate > DateTime.Now,
+                             End = a.EndDate < DateTime.Now.AddHours(8),
+                             Start = a.StartDate > DateTime.Now.AddHours(8),
                              a.Chance
                          }).FirstOrDefault();
 
@@ -311,7 +311,7 @@ public class Role : IHttpHandler, IRequiresSessionState
             tt.Star2 = json.star.star2;
             tt.Star3 = json.star.star3;
             tt.Star4 = json.star.star4;
-            tt.time = DateTime.Now;
+            tt.time = DateTime.Now.AddHours(8);
             var rank = (from a in DB.Rank2
                         where a.SceneID == SceneID && a.Type == "3"
                         select a).SingleOrDefault();

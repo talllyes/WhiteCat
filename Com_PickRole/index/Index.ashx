@@ -36,13 +36,6 @@ public class Index : IHttpHandler, IRequiresSessionState
             return false;
         }
     }
-    public void aa()
-    {
-   context.Response.ContentType = "text/plain";
-            context.Response.Write(DateTime.Now);
-    }
-
-
 
     //取得場景資料
     public void getSence()
@@ -58,8 +51,8 @@ public class Index : IHttpHandler, IRequiresSessionState
                              a.Src,
                              a.StartDate,
                              a.EndDate,
-                             End = a.EndDate < DateTime.Now,
-                             Start = a.StartDate > DateTime.Now
+                             End = a.EndDate < DateTime.Now.AddHours(8),
+                             Start = a.StartDate > DateTime.Now.AddHours(8)
                          };
             context.Response.ContentType = "text/plain";
             context.Response.Write(JsonConvert.SerializeObject(result));

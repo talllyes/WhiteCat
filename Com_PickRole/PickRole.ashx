@@ -30,7 +30,7 @@ public class keyin : IHttpHandler, IRequiresSessionState
             try
             {
                 var result = from a in DB.Scene
-                             where a.StartDate < DateTime.Now && a.EndDate > DateTime.Now
+                             where a.StartDate < DateTime.Now.AddHours(8) && a.EndDate > DateTime.Now.AddHours(8)
                              select a;
                 context.Response.ContentType = "text/plain";
                 context.Response.Write(JsonConvert.SerializeObject(result));

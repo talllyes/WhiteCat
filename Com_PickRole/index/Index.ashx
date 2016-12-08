@@ -36,6 +36,13 @@ public class Index : IHttpHandler, IRequiresSessionState
             return false;
         }
     }
+    public void aa()
+    {
+   context.Response.ContentType = "text/plain";
+            context.Response.Write(DateTime.Now);
+    }
+
+
 
     //取得場景資料
     public void getSence()
